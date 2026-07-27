@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VISORA — Cinematic Films & Photography</title>
+  <meta name="description" content="VISORA — cinematic films, commercial photography and creative direction. Storytelling through powerful imagery." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ======================= NAV ======================= -->
+  <header class="nav" id="top">
+    <a href="#about" class="nav__link">ABOUT</a>
+    <a href="#projects" class="nav__link nav__link--center">PROJECTS</a>
+    <a href="#contact" class="nav__link">CONTACT</a>
+  </header>
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <!-- Cosmic / nebula background layers -->
+    <div class="hero__bg">
+      <div class="hero__planet"></div>
+      <div class="hero__stars"></div>
+      <div class="hero__glow"></div>
+      <div class="hero__smoke"></div>
+    </div>
+
+    <!-- Big VISORA outline behind the portrait -->
+    <div class="hero__watermark" aria-hidden="true">VISORA</div>
+
+    <!-- Portrait -->
+    <div class="hero__portrait">
+      <img src="assets/images/portrait.png" alt="VISORA portrait"
+           onerror="this.classList.add('is-missing')" />
+    </div>
+
+    <!-- Top heading with typing animation -->
+    <h1 class="hero__title">
+      HI, I'M <span class="type" id="typed"></span><span class="type__cursor" aria-hidden="true">|</span>
+    </h1>
+
+    <!-- Left tagline -->
+    <div class="hero__tagline">
+      <p>CINEMATIC FILMS.</p>
+      <p>COMMERCIAL PHOTOGRAPHY.</p>
+      <p>CREATIVE DIRECTION.</p>
+    </div>
+
+    <!-- Right CTA -->
+    <a href="#contact" class="hero__cta btn">CONTACT ME</a>
+
+    <!-- Bottom feature callouts -->
+    <div class="hero__feature hero__feature--left">
+      <svg viewBox="0 0 24 24" class="feature__icon" aria-hidden="true"><path d="M2 7h11v10H2zM13 10l6-3v10l-6-3" /><circle cx="6" cy="12" r="1.5"/></svg>
+      <h3>CINEMATIC VISUALS</h3>
+      <p>Storytelling through<br>powerful imagery.</p>
+    </div>
+
+    <div class="hero__feature hero__feature--right">
+      <svg viewBox="0 0 24 24" class="feature__icon" aria-hidden="true"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><circle cx="12" cy="12" r="3"/></svg>
+      <h3>CREATIVE DIRECTION</h3>
+      <p>Bringing ideas to life<br>with purpose.</p>
+    </div>
+
+    <!-- Bottom center -->
+    <div class="hero__foot">
+      <span>PRO 1 WORLD.</span>
+      <span class="hero__dots"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+  </section>
+
+  <!-- ======================= PROJECTS / BEFORE-AFTER ======================= -->
+  <section class="section" id="projects">
+    <div class="section__head">
+      <p class="eyebrow">SELECTED WORK</p>
+      <h2>BEFORE &amp; AFTER THE GRADE</h2>
+      <p class="section__sub">Drag the slider to reveal the color grade — raw footage on one side, the final cinematic look on the other.</p>
+    </div>
+
+    <!-- The star feature: before/after color grading comparison -->
+    <div class="grade" id="grade1">
+      <div class="grade__media">
+        <!-- AFTER (graded) -->
+        <video class="grade__after" muted loop playsinline autoplay
+               poster="assets/images/after-poster.jpg">
+          <source src="assets/videos/showreel.mp4" type="video/mp4" />
+        </video>
+        <!-- BEFORE (raw / ungraded) — same video, flattened via CSS filter -->
+        <div class="grade__before">
+          <video muted loop playsinline autoplay poster="assets/images/before-poster.jpg">
+            <source src="assets/videos/showreel.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <span class="grade__tag grade__tag--before">BEFORE</span>
+        <span class="grade__tag grade__tag--after">AFTER</span>
+
+        <!-- Draggable divider -->
+        <div class="grade__divider">
+          <button class="grade__handle" aria-label="Drag to compare before and after">
+            <svg viewBox="0 0 24 24"><path d="M9 6L4 12l5 6M15 6l5 6-5 6"/></svg>
+          </button>
+        </div>
+
+        <input type="range" min="0" max="100" value="50" class="grade__range" aria-label="Comparison slider" />
+      </div>
+      <div class="grade__caption">
+        <h3>Cinematic Colour Grade — Sample Reel</h3>
+        <p>Replace <code>assets/videos/showreel.mp4</code> with your own clip. Add a second graded clip for a true A/B, or keep the built-in flat-look preview.</p>
+      </div>
+    </div>
+
+    <!-- Video showcase grid -->
+    <div class="grid" id="films">
+      <!-- Cards are generated in JS; edit the data in js/main.js -->
+    </div>
+  </section>
+
+  <!-- ======================= PHOTOGRAPHY ======================= -->
+  <section class="section section--alt" id="photos">
+    <div class="section__head">
+      <p class="eyebrow">STILLS</p>
+      <h2>PHOTOGRAPHY</h2>
+      <p class="section__sub">A selection of commercial and portrait work. Swap the images in <code>assets/images/</code>.</p>
+    </div>
+    <div class="gallery" id="gallery"><!-- generated in js/main.js --></div>
+  </section>
+
+  <!-- ======================= ABOUT ======================= -->
+  <section class="section" id="about">
+    <div class="about">
+      <div class="about__text">
+        <p class="eyebrow">ABOUT</p>
+        <h2>VISORA</h2>
+        <p>I'm a filmmaker and photographer crafting cinematic visuals with intent. From concept to final colour grade, I bring stories to life through light, motion and mood.</p>
+        <p>Available for commercial films, brand campaigns, music videos and portrait sessions worldwide.</p>
+        <ul class="about__list">
+          <li>Cinematic Films</li>
+          <li>Commercial Photography</li>
+          <li>Colour Grading</li>
+          <li>Creative Direction</li>
+        </ul>
+      </div>
+      <div class="about__photo">
+        <img src="assets/images/portrait.png" alt="VISORA" onerror="this.classList.add('is-missing')" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONTACT ======================= -->
+  <section class="section section--contact" id="contact">
+    <div class="section__head">
+      <p class="eyebrow">LET'S WORK</p>
+      <h2>GET IN TOUCH</h2>
+      <p class="section__sub">Have a project in mind? Let's create something cinematic.</p>
+    </div>
+    <form class="contact" onsubmit="return VISORA.sendMail(event)">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
+      <button type="submit" class="btn">SEND MESSAGE</button>
+    </form>
+    <div class="social">
+      <a href="#" data-social="instagram">Instagram</a>
+      <a href="#" data-social="youtube">YouTube</a>
+      <a href="#" data-social="vimeo">Vimeo</a>
+      <a href="mailto:hello@visora.com" data-social="email">Email</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> VISORA</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
