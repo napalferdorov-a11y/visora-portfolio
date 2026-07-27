@@ -5,7 +5,7 @@
   "use strict";
 
   /* ---------- 1. TYPING ANIMATION ("VISORA") ---------- */
-  const words = ["VISORA", "A FILMMAKER", "A COLOURIST", "VISORA"];
+  const words = ["VISORA"];
   const typed = document.getElementById("typed");
   let w = 0, c = 0, deleting = false;
 
