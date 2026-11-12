@@ -2,3 +2,7 @@
 node_modules/
 *.log
 Thumbs.db
+
+# next app
+visora-next/node_modules/
+visora-next/.next/

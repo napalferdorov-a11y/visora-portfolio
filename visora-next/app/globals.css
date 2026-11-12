@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0c0c0c;
+  --bg: #ffffff;
+  --muted: #6b6b6b;
+  --line: #e6e6e6;
+  --paper: #f4f4f2;
+  --accent: #7c5cff;      /* VISORA violet */
+  --accent-2: #ec4899;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---- Typographic utilities (Geist, tight editorial tracking) ---- */
+.display {
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+}
+.mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.eyebrow {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.eyebrow::before { content: "{ "; }
+.eyebrow::after  { content: " }"; }
+
+/* container */
+.wrap { width: 100%; max-width: 1360px; margin-inline: auto; padding-inline: clamp(20px, 4vw, 56px); }
+
+/* ---- Nav hover text-swap ---- */
+.navlink { position: relative; display: inline-block; overflow: hidden; height: 1.25em; line-height: 1.25em; }
+.navlink span { display: block; transition: transform .38s cubic-bezier(.76,0,.24,1); }
+.navlink span.b { position: absolute; top: 100%; left: 0; color: var(--accent); }
+.navlink:hover span { transform: translateY(-100%); }
+
+/* ---- Marquee ---- */
+.marquee { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---- Buttons ---- */
+.btn-dark {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--ink); color: #fff; padding: 13px 20px;
+  font-size: .9rem; border: 1px solid var(--ink);
+  transition: background .3s, color .3s;
+}
+.btn-dark:hover { background: transparent; color: var(--ink); }
+.btn-ico { display: grid; place-items: center; width: 26px; height: 26px; background: var(--accent); color:#fff; border-radius: 999px; transition: transform .35s; }
+.btn-dark:hover .btn-ico { transform: translate(3px,-3px); }
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  * { scroll-behavior: auto; }
+}
