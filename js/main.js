@@ -106,15 +106,47 @@
     });
   }
 
+  /* ---------- 4b. TRUST LOGOS (edit these) ---------- */
+  const brands = ["AURORA", "NORTHSIDE", "MAISON &amp; CO", "VERTEX", "BLOOM", "KODE"];
+  const trust = document.getElementById("trustLogos");
+  if (trust) {
+    brands.forEach((b) => {
+      const s = document.createElement("span");
+      s.className = "logo";
+      s.innerHTML = b;
+      trust.appendChild(s);
+    });
+  }
+
   /* ---------- 5. SCROLL REVEAL ---------- */
-  const io = new IntersectionObserver(
-    (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("in")),
-    { threshold: 0.12 }
-  );
-  document.querySelectorAll(".section__head, .grade, .card, .about, .contact").forEach((el) => {
-    el.setAttribute("data-reveal", "");
-    io.observe(el);
-  });
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".section__head, .grade, .card, .about, .contact, .value, .stat, .svc, .process li, .quote").forEach((el) => {
+      el.setAttribute("data-reveal", "");
+      io.observe(el);
+    });
+  }
+
+  /* ---------- 5b. STICKY NAV + MOBILE MENU + SMOOTH LINKS ---------- */
+  const nav = document.querySelector(".nav");
+  const onScroll = () => nav && nav.classList.toggle("is-stuck", window.scrollY > 40);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const burger = document.querySelector(".nav__burger");
+  const links = document.querySelector(".nav__links");
+  if (burger && links) {
+    const toggle = (open) => {
+      links.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    burger.addEventListener("click", () => toggle(!links.classList.contains("is-open")));
+    links.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggle(false)));
+  }
 
   /* ---------- 6. YEAR + CONTACT (mailto) ---------- */
   const year = document.getElementById("year");
@@ -124,8 +156,9 @@
     sendMail(e) {
       e.preventDefault();
       const f = e.target;
-      const subject = encodeURIComponent(`New enquiry from ${f.name.value}`);
-      const body = encodeURIComponent(`${f.message.value}\n\n— ${f.name.value} (${f.email.value})`);
+      const biz = f.business && f.business.value ? ` — ${f.business.value}` : "";
+      const subject = encodeURIComponent(`New enquiry from ${f.name.value}${biz}`);
+      const body = encodeURIComponent(`${f.message.value}\n\n— ${f.name.value}${biz}\n${f.email.value}`);
       window.location.href = `mailto:hello@visora.com?subject=${subject}&body=${body}`;
       return false;
     }

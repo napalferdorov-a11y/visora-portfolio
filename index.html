@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VISORA — Cinematic Films & Photography</title>
-  <meta name="description" content="VISORA — cinematic films, commercial photography and creative direction. Storytelling through powerful imagery." />
+  <title>VISORA — Video &amp; Photography for Brands</title>
+  <meta name="description" content="VISORA produces cinematic brand films, commercial photography and social content that helps businesses stand out, build trust and sell more." />
+  <meta name="theme-color" content="#08040f" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -17,14 +18,19 @@
 
   <!-- ======================= NAV ======================= -->
   <header class="nav" id="top">
-    <a href="#about" class="nav__link">ABOUT</a>
-    <a href="#projects" class="nav__link nav__link--center">PROJECTS</a>
-    <a href="#contact" class="nav__link">CONTACT</a>
+    <a href="#top" class="nav__logo">VISORA</a>
+    <nav class="nav__links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#about">About</a>
+    </nav>
+    <a href="#contact" class="btn btn--sm">Book a call</a>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </header>
 
   <!-- ======================= HERO ======================= -->
   <section class="hero">
-    <!-- Cosmic / nebula background layers -->
     <div class="hero__bg">
       <div class="hero__planet"></div>
       <div class="hero__stars"></div>
@@ -32,31 +38,25 @@
       <div class="hero__smoke"></div>
     </div>
 
-    <!-- Big VISORA outline behind the portrait -->
     <div class="hero__watermark" aria-hidden="true">VISORA</div>
 
-    <!-- Portrait -->
     <div class="hero__portrait">
-      <img src="assets/images/portrait.png" alt="VISORA portrait"
+      <img src="assets/images/portrait.png" alt="VISORA — videographer and photographer"
            onerror="this.classList.add('is-missing')" />
     </div>
 
-    <!-- Top heading with typing animation -->
     <h1 class="hero__title">
       HI, I'M <span class="type" id="typed"></span><span class="type__cursor" aria-hidden="true">|</span>
     </h1>
 
-    <!-- Left tagline -->
     <div class="hero__tagline">
       <p>CINEMATIC FILMS.</p>
       <p>COMMERCIAL PHOTOGRAPHY.</p>
       <p>CREATIVE DIRECTION.</p>
     </div>
 
-    <!-- Right CTA -->
     <a href="#contact" class="hero__cta btn">CONTACT ME</a>
 
-    <!-- Bottom feature callouts -->
     <div class="hero__feature hero__feature--left">
       <svg viewBox="0 0 24 24" class="feature__icon" aria-hidden="true"><path d="M2 7h11v10H2zM13 10l6-3v10l-6-3" /><circle cx="6" cy="12" r="1.5"/></svg>
       <h3>CINEMATIC VISUALS</h3>
@@ -68,64 +68,143 @@
       <h3>CREATIVE DIRECTION</h3>
       <p>Bringing ideas to life<br>with purpose.</p>
     </div>
-
   </section>
 
-  <!-- ======================= PROJECTS / BEFORE-AFTER ======================= -->
-  <section class="section" id="projects">
+  <!-- ======================= TRUST STRIP ======================= -->
+  <section class="trust">
+    <p class="trust__label">Trusted by brands &amp; business owners</p>
+    <div class="trust__logos" id="trustLogos"><!-- logos injected --></div>
+  </section>
+
+  <!-- ======================= VALUE ======================= -->
+  <section class="section value" id="value">
+    <p class="eyebrow">WHY VISORA</p>
+    <h2 class="value__headline">Visuals that make your business impossible to scroll past.</h2>
+    <p class="value__sub">Great products get ignored when they look ordinary. I create video and photography that build instant trust, raise your perceived value, and turn viewers into customers.</p>
+    <div class="stats">
+      <div class="stat"><strong>48h</strong><span>Typical turnaround for social cuts</span></div>
+      <div class="stat"><strong>4K</strong><span>Cinematic capture &amp; colour grade</span></div>
+      <div class="stat"><strong>100%</strong><span>Done-for-you, from idea to delivery</span></div>
+    </div>
+  </section>
+
+  <!-- ======================= SERVICES ======================= -->
+  <section class="section section--alt" id="services">
     <div class="section__head">
-      <p class="eyebrow">SELECTED WORK</p>
-      <h2>BEFORE &amp; AFTER THE GRADE</h2>
-      <p class="section__sub">Drag the slider to reveal the color grade — raw footage on one side, the final cinematic look on the other.</p>
+      <p class="eyebrow">SERVICES</p>
+      <h2>What I do for your brand</h2>
+      <p class="section__sub">Clear packages built around what actually moves a business — awareness, trust and sales.</p>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 7h11v10H2zM13 10l6-3v10l-6-3"/><circle cx="6" cy="12" r="1.5"/></svg>
+        <h3>Brand &amp; Promo Films</h3>
+        <p>Cinematic 30–90s films for your website, ads and launches that tell your story and sell the result.</p>
+        <span class="svc__tag">Websites · Ads · Launches</span>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><circle cx="12" cy="12" r="3"/></svg>
+        <h3>Commercial Photography</h3>
+        <p>Product, food, fashion and brand photography that makes your catalogue and storefront look premium.</p>
+        <span class="svc__tag">Product · Brand · Portrait</span>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg>
+        <h3>Social Content</h3>
+        <p>Scroll-stopping Reels, TikToks and Shorts — batch-shot so you have weeks of content in one session.</p>
+        <span class="svc__tag">Reels · TikTok · Shorts</span>
+      </article>
+      <article class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 21l-5 2.6 1-5.5-4-3.9 5.5-.8z"/></svg>
+        <h3>Events &amp; Launches</h3>
+        <p>Full coverage of openings, conferences and campaigns — delivered as a highlight film plus a photo set.</p>
+        <span class="svc__tag">Coverage · Highlights</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ======================= BEFORE / AFTER ======================= -->
+  <section class="section" id="grade">
+    <div class="section__head">
+      <p class="eyebrow">THE DIFFERENCE</p>
+      <h2>Before &amp; after the grade</h2>
+      <p class="section__sub">The same footage, raw vs. finished. This is the polish that makes brand content look expensive. Drag to compare.</p>
     </div>
 
-    <!-- The star feature: before/after color grading comparison -->
     <div class="grade" id="grade1">
       <div class="grade__media">
-        <!-- AFTER (graded) -->
-        <video class="grade__after" muted loop playsinline autoplay
-               poster="assets/images/after-poster.jpg">
+        <video class="grade__after" muted loop playsinline autoplay poster="assets/images/after-poster.jpg">
           <source src="assets/videos/showreel.mp4" type="video/mp4" />
         </video>
-        <!-- BEFORE (raw / ungraded) — same video, flattened via CSS filter -->
         <div class="grade__before">
           <video muted loop playsinline autoplay poster="assets/images/before-poster.jpg">
             <source src="assets/videos/showreel.mp4" type="video/mp4" />
           </video>
         </div>
-
-        <span class="grade__tag grade__tag--before">BEFORE</span>
-        <span class="grade__tag grade__tag--after">AFTER</span>
-
-        <!-- Draggable divider -->
+        <span class="grade__tag grade__tag--before">RAW</span>
+        <span class="grade__tag grade__tag--after">GRADED</span>
         <div class="grade__divider">
           <button class="grade__handle" aria-label="Drag to compare before and after">
             <svg viewBox="0 0 24 24"><path d="M9 6L4 12l5 6M15 6l5 6-5 6"/></svg>
           </button>
         </div>
-
         <input type="range" min="0" max="100" value="50" class="grade__range" aria-label="Comparison slider" />
       </div>
-      <div class="grade__caption">
-        <h3>Cinematic Colour Grade — Sample Reel</h3>
-        <p>Replace <code>assets/videos/showreel.mp4</code> with your own clip. Add a second graded clip for a true A/B, or keep the built-in flat-look preview.</p>
-      </div>
-    </div>
-
-    <!-- Video showcase grid -->
-    <div class="grid" id="films">
-      <!-- Cards are generated in JS; edit the data in js/main.js -->
     </div>
   </section>
 
-  <!-- ======================= PHOTOGRAPHY ======================= -->
-  <section class="section section--alt" id="photos">
+  <!-- ======================= WORK ======================= -->
+  <section class="section section--alt" id="work">
     <div class="section__head">
-      <p class="eyebrow">STILLS</p>
-      <h2>PHOTOGRAPHY</h2>
-      <p class="section__sub">A selection of commercial and portrait work. Swap the images in <code>assets/images/</code>.</p>
+      <p class="eyebrow">SELECTED WORK</p>
+      <h2>Recent projects</h2>
+      <p class="section__sub">A snapshot of films and campaigns. Swap in your own clips in <code>assets/videos/</code>.</p>
     </div>
-    <div class="gallery" id="gallery"><!-- generated in js/main.js --></div>
+    <div class="grid" id="films"></div>
+
+    <div class="section__head section__head--mt">
+      <p class="eyebrow">STILLS</p>
+      <h2>Photography</h2>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <!-- ======================= PROCESS ======================= -->
+  <section class="section" id="process">
+    <div class="section__head">
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2>Simple from first call to final cut</h2>
+      <p class="section__sub">No jargon, no chasing. A clear process so you always know what happens next.</p>
+    </div>
+    <ol class="process">
+      <li><span class="process__n">1</span><h3>Discovery call</h3><p>We talk goals, audience and budget. You get a clear quote and plan — no surprises.</p></li>
+      <li><span class="process__n">2</span><h3>Shoot day</h3><p>I handle direction, lighting and camera. You show up and look good; I do the rest.</p></li>
+      <li><span class="process__n">3</span><h3>Edit &amp; grade</h3><p>Editing, sound and the cinematic colour grade that makes it look premium.</p></li>
+      <li><span class="process__n">4</span><h3>Delivery</h3><p>Ready-to-post files in every size you need — web, ads, Reels and stills.</p></li>
+    </ol>
+  </section>
+
+  <!-- ======================= TESTIMONIALS ======================= -->
+  <section class="section section--alt" id="testimonials">
+    <div class="section__head">
+      <p class="eyebrow">WHAT CLIENTS SAY</p>
+      <h2>Results business owners notice</h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote">
+        <blockquote>"Our new brand film doubled time-on-page and we closed three big clients off the back of it. Worth every penny."</blockquote>
+        <figcaption><strong>Sample Client</strong><span>Founder, Local Studio</span></figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>"The product photos made our store look like a brand ten times our size. Sales went up within the first week."</blockquote>
+        <figcaption><strong>Sample Client</strong><span>Owner, E-commerce Shop</span></figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>"A month of Reels from one shoot day. Our engagement has never been higher and it barely took my time."</blockquote>
+        <figcaption><strong>Sample Client</strong><span>Director, Café Group</span></figcaption>
+      </figure>
+    </div>
+    <p class="quotes__note">Replace these with real quotes once you have them — social proof is what converts business owners.</p>
   </section>
 
   <!-- ======================= ABOUT ======================= -->
@@ -133,15 +212,16 @@
     <div class="about">
       <div class="about__text">
         <p class="eyebrow">ABOUT</p>
-        <h2>VISORA</h2>
-        <p>I'm a filmmaker and photographer crafting cinematic visuals with intent. From concept to final colour grade, I bring stories to life through light, motion and mood.</p>
-        <p>Available for commercial films, brand campaigns, music videos and portrait sessions worldwide.</p>
+        <h2>Meet VISORA</h2>
+        <p>I'm a videographer and photographer who helps businesses look as good as they are. I handle the whole thing — concept, shoot, edit and grade — so you get premium content without managing a crew.</p>
+        <p>If your brand looks ordinary, customers assume it is. My job is to make sure yours never does.</p>
         <ul class="about__list">
-          <li>Cinematic Films</li>
+          <li>Brand Films</li>
           <li>Commercial Photography</li>
+          <li>Social Content</li>
           <li>Colour Grading</li>
-          <li>Creative Direction</li>
         </ul>
+        <a href="#contact" class="btn" style="margin-top:28px">Start a project</a>
       </div>
       <div class="about__photo">
         <img src="assets/images/portrait.png" alt="VISORA" onerror="this.classList.add('is-missing')" />
@@ -152,26 +232,30 @@
   <!-- ======================= CONTACT ======================= -->
   <section class="section section--contact" id="contact">
     <div class="section__head">
-      <p class="eyebrow">LET'S WORK</p>
-      <h2>GET IN TOUCH</h2>
-      <p class="section__sub">Have a project in mind? Let's create something cinematic.</p>
+      <p class="eyebrow">LET'S WORK TOGETHER</p>
+      <h2>Let's grow your brand</h2>
+      <p class="section__sub">Tell me about your business and what you need. I'll reply within one business day with ideas and a quote.</p>
     </div>
     <form class="contact" onsubmit="return VISORA.sendMail(event)">
-      <input type="text" name="name" placeholder="Your name" required />
-      <input type="email" name="email" placeholder="Your email" required />
-      <textarea name="message" placeholder="Tell me about your project" rows="4" required></textarea>
-      <button type="submit" class="btn">SEND MESSAGE</button>
+      <div class="contact__row">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+      </div>
+      <input type="text" name="business" placeholder="Business name (optional)" />
+      <textarea name="message" placeholder="What are you looking to create?" rows="4" required></textarea>
+      <button type="submit" class="btn btn--block">Send enquiry</button>
+      <p class="contact__alt">Prefer email? <a href="mailto:hello@visora.com">hello@visora.com</a></p>
     </form>
     <div class="social">
       <a href="#" data-social="instagram">Instagram</a>
       <a href="#" data-social="youtube">YouTube</a>
-      <a href="#" data-social="vimeo">Vimeo</a>
+      <a href="#" data-social="tiktok">TikTok</a>
       <a href="mailto:hello@visora.com" data-social="email">Email</a>
     </div>
   </section>
 
   <footer class="footer">
-    <span>© <span id="year"></span> VISORA</span>
+    <span>© <span id="year"></span> VISORA — Video &amp; Photography for brands</span>
     <a href="#top">Back to top ↑</a>
   </footer>
 
