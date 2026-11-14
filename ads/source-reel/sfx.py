@@ -2,7 +2,7 @@
 import numpy as np, scipy.signal as sg, os, subprocess
 from scipy.io import wavfile
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-SR = 48000; DUR = 30.0; N = int(SR * DUR)
+SR = 48000; DUR = 20.3; N = int(SR * DUR)
 rng = np.random.default_rng(7)
 bus = np.zeros((N, 2), np.float64)
 log = []
@@ -94,35 +94,26 @@ def cam(t,db=-8,pan=0.0): put('shutter',t-0.004,shutter(),db,pan)
 def wh(peak,db=-11,d=0.42,pan=0.0,lo=260,hi=7000): put('whoosh',0,whoosh(d,0.72,lo,hi),db,pan,peak_at=peak)
 def sw(t,db=-19,pan=0.0,f=2800): put('swish',t,swish(0.4,f),db,pan)
 # hook
-wh(0.05,-13,0.3); imp(0.58,-6); cam(0.58,-7); imp(0.98,-8); cam(0.98,-8,0.2)
-sw(1.04,-18,-0.3); sw(1.73,-18,0.3); put('riser',0,riser(0.9),-11,peak_at=3.70); sw(3.06,-19)
+wh(0.04,-13,0.3); imp(0.44,-6); cam(0.44,-7); imp(0.82,-8); cam(0.82,-8,0.2)
+sw(0.86,-18,-0.3); sw(1.60,-18,0.3); put('riser',0,riser(0.8),-11,peak_at=3.57); sw(2.94,-19)
 # the idea
-put('cut',3.30,tick(1700),-11,-0.3); put('cut',3.49,tick(2000),-11,0.3)
-imp(3.72,-6); wh(3.73,-13,0.3); put('thud',4.10,thud(),-8)
-put('pen',4.16,scribble(0.7),-13,0.2); put('pop',4.89,pop(520,300,0.08),-12); sw(4.90,-18)
+put('cut',3.18,tick(1700),-11,-0.3); put('cut',3.37,tick(2000),-12,0.3)
+imp(3.59,-6); wh(3.60,-13,0.3); put('thud',3.96,thud(),-8)
+put('pen',4.02,scribble(0.7),-13,0.2); put('pop',4.77,pop(520,300,0.08),-12); sw(4.78,-18)
 # the shoot
-put('thud',5.66,thud(0.6,80,38),-8); sw(5.70,-19)
-wh(6.85,-11,0.34,-0.2); put('thud',6.86,thud(),-8); put('thud',7.23,thud(0.6,90,40),-7)
-put('pop',8.04,pop(300,160,0.1),-15)
-wh(8.84,-8,0.46,0.3,300,8000)
+put('thud',5.55,thud(0.6,80,38),-8); sw(5.60,-19); put('cut',6.33,tick(1800),-13); put('thud',6.73,thud(0.5,90,42),-10)
+wh(7.12,-8,0.46,0.3,300,8000); put('thud',7.10,thud(),-8); put('pop',7.92,pop(300,160,0.1),-15); put('pop',8.69,pop(300,160,0.1),-15)
 # the result: camera shutters on the photos
-cam(9.60,-5,-0.3); cam(9.78,-6,0.3); cam(9.99,-5,0.0); imp(9.60,-9)
-put('thud',10.37,thud(),-9); sw(10.0,-18); wh(11.16,-15,0.3); cam(11.17,-10,0.2); wh(11.94,-15,0.3); cam(11.95,-10,-0.2)
-imp(12.73,-8); put('cut',12.92,tick(1800),-13); put('cut',13.14,tick(2100),-13); cam(13.51,-8)
-wh(14.31,-14,0.4,0.0,200,3000); put('thud',15.10,thud(),-9)
-# fast montage
-put('riser',0,riser(0.6),-13,peak_at=15.87); imp(15.88,-7)
-put('pen',15.92,scribble(0.5),-15,0.2); cam(16.65,-7,0.2); wh(17.49,-8,0.46,-0.3,300,8000)
-cam(18.24,-7,-0.2); put('cut',19.02,tick(1900),-10); cam(19.24,-6,0.3); cam(19.43,-6,-0.3)
-wh(19.80,-12,0.3); put('thud',19.80,thud(),-9); cam(20.61,-7); put('thud',21.38,thud(),-9)
+imp(9.47,-8); cam(9.47,-5,-0.3); cam(9.69,-7,0.3); cam(9.88,-6,0.0)
+sw(9.90,-18); cam(10.25,-7,0.2); put('thud',10.25,thud(),-9); wh(11.05,-15,0.3); wh(11.82,-15,0.3)
 # tagline
-put('riser',0,riser(0.7),-12,peak_at=22.16); imp(22.17,-6)
-sw(22.20,-18,-0.3); sw(22.93,-18,0.3); sw(23.72,-18); put('hl',0,whoosh(0.34,0.6,900,9000),-12,peak_at=23.86); put('hl hit',23.76,pop(700,260,0.1),-11)
+put('riser',0,riser(0.6),-12,peak_at=12.61); imp(12.62,-6)
+sw(12.66,-18,-0.3); sw(13.38,-18,0.3); sw(14.18,-18); put('hl',0,whoosh(0.34,0.6,900,9000),-12,peak_at=14.32); put('hl hit',14.24,pop(700,260,0.1),-11)
 # call to action
-wh(25.30,-10,0.5); imp(25.32,-6); cam(25.32,-8)
-sw(25.42,-15,0.0,3200); sw(26.05,-18); put('btn',26.88,pop(380,640,0.1),-10); sw(27.30,-19); put('pop',27.67,pop(520,300,0.07),-15)
-put('tap',28.45,click(),-5); put('chime',28.52,chime(),-9)
-cam(29.21,-4); put('end hit',29.23,boom(0.9),-9)
+wh(15.75,-10,0.5); imp(15.77,-6); cam(15.77,-8)
+sw(15.86,-15,0.0,3200); sw(16.50,-18); put('btn',17.33,pop(380,640,0.1),-10); sw(17.72,-19); put('pop',18.12,pop(520,300,0.07),-15)
+put('tap',18.90,click(),-5); put('chime',18.97,chime(),-9)
+cam(19.66,-4); put('end hit',19.68,boom(0.6),-9)
 
 pk=np.abs(bus).max(); bus=np.tanh(bus); pk=np.abs(bus).max()
 if pk>0.89: bus*=0.89/pk

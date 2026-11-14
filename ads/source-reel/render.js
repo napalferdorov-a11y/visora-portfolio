@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const path = require('path'), fs = require('fs');
 const DIR = __dirname, URL = 'file://' + path.join(DIR, 'reel.html');
-const FPS = 30, DUR = 30, N = FPS * DUR;
+const FPS = 30, DUR = 20.3, N = 609;
 (async () => {
   const mode = process.argv[2] || 'test';
   const b = await chromium.launch({ args: ['--no-sandbox', '--force-color-profile=srgb', '--font-render-hinting=none'] });
@@ -25,7 +25,7 @@ const FPS = 30, DUR = 30, N = FPS * DUR;
     }
   } else {
     const W = Number(process.argv[3] || 4);
-    const out = path.join(DIR, 'out'); fs.mkdirSync(out, { recursive: true });
+    const out = path.join(DIR, 'out20'); fs.mkdirSync(out, { recursive: true });
     await Promise.all([...Array(W)].map(async (_, w) => {
       const { p } = await open();
       for (let i = w; i < N; i += W) {
