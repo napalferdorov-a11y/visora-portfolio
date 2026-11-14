@@ -25,7 +25,7 @@ const FPS = 30, DUR = 20, N = FPS * DUR;
     }
   } else {
     const W = Number(process.argv[3] || 4);
-    const out = path.join(DIR, 'out'); fs.mkdirSync(out, { recursive: true });
+    const out = path.join(DIR, 'out2'); fs.mkdirSync(out, { recursive: true });
     await Promise.all([...Array(W)].map(async (_, w) => {
       const { p } = await open();
       for (let i = w; i < N; i += W) {

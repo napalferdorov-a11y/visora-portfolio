@@ -60,20 +60,20 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
 #s3a .card{background:#1B1D1A}
 #fB{position:absolute;inset:0;width:920px;height:1000px;object-fit:cover;transform-origin:40% 30%}
 #s3a .pill{background:var(--bg);color:var(--ink)}
-#focus{position:absolute;left:236px;top:86px;width:330px;height:330px}
+#focus{position:absolute;left:295px;top:200px;width:330px;height:330px}
 #focus i{position:absolute;width:56px;height:56px;border:4px solid #fff}
 #focus i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}
 #focus i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}
 #focus i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}
 #focus i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
 #s3b{background:var(--ink);color:var(--bg)}
-#s3b .card{background:#1A1C1A;border:2px solid rgba(243,240,234,.16)}
+#s3b .card{background:#1A1C1A}
 #s3b .pill{background:var(--bg);color:var(--ink)}
 #arch path,#arch line{fill:none;stroke:#F3F0EA;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
 #arch .thin{stroke-width:3.5;opacity:.55}
 #sun{position:absolute;left:668px;top:118px;width:112px;height:112px;border-radius:50%;background:var(--blue)}
 #s3c{background:var(--blue);color:#fff}
-#s3c .card{background:#2439AE}
+#s3c .card{background:#0B1118}
 #s3c .pill{background:#fff;color:var(--ink)}
 .fmt{position:absolute;border:5px solid #fff;border-radius:26px;display:flex;align-items:flex-end;justify-content:flex-start;padding:22px 24px;font-weight:600;font-size:26px;letter-spacing:.12em;text-transform:uppercase}
 .fmt .play{position:absolute;left:50%;top:50%;width:0;height:0;margin:-26px 0 0 -16px;border-left:42px solid #fff;border-top:26px solid transparent;border-bottom:26px solid transparent}
@@ -85,6 +85,11 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
 #tl .head{position:absolute;top:-14px;width:5px;height:122px;background:#fff;border-radius:4px}
 #tl .head:before{content:"";position:absolute;left:-10px;top:-6px;border-left:12.5px solid transparent;border-right:12.5px solid transparent;border-top:16px solid #fff}
 
+.ph{position:absolute;inset:0;width:920px;height:1000px;object-fit:cover;transform-origin:50% 40%}
+#cut{position:absolute;inset:0;background:#fff;opacity:0}
+#wl{position:absolute;top:0;bottom:0;left:0;width:6px;margin-left:-3px;background:#fff;box-shadow:0 0 24px rgba(0,0,0,.45)}
+.chip{position:absolute;top:92px;padding:12px 24px;border-radius:100px;font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;background:rgba(18,18,18,.72);color:#fff}
+#cb{right:34px}#ca{left:34px;background:var(--blue)}
 /* S4 tagline */
 #s4{background:var(--dark)}
 #s4 .top{position:absolute;left:84px;top:250px;display:flex;align-items:center;gap:18px}
@@ -142,7 +147,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
     <div class="top label"><span class="n"><span>01</span><u></u><span>03</span></span><span>Services</span></div>
     <div class="title h"><span class="ln"><span class="in">Private</span></span><span class="ln"><span class="in">shooting</span></span></div>
     <div class="card">
-      <img id="fB" src="frames/B2/0001.jpg">
+      <img id="pA" class="ph" src="img/p1.jpg"><img id="pB" class="ph" src="img/p2.jpg"><div id="cut"></div>
       {{HUD:small}}
       <div id="focus"><i></i><i></i><i></i><i></i></div>
       <div class="pill">Portraits &amp; personal films</div>
@@ -154,17 +159,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
     <div class="top label"><span class="n"><span>02</span><u></u><span>03</span></span><span>Services</span></div>
     <div class="title h"><span class="ln"><span class="in">Real</span></span><span class="ln"><span class="in">estate</span></span></div>
     <div class="card">
-      <div id="sun"></div>
-      <svg id="arch" viewBox="0 0 920 1000" width="920" height="1000" style="position:absolute;inset:0">
-        <path class="d thin" pathLength="1" d="M60,300 H860"/>
-        <path class="d" pathLength="1" d="M265,790 V300 H655 V790"/>
-        <path class="d" pathLength="1" d="M330,790 V520 A150,150 0 1 1 590,520 V790"/>
-        <path class="d" pathLength="1" d="M95,790 V590 A82,82 0 1 1 225,590 V790"/>
-        <path class="d" pathLength="1" d="M695,790 V590 A82,82 0 1 1 825,590 V790"/>
-        <path class="d" pathLength="1" d="M40,790 H880"/>
-        <path class="d thin" pathLength="1" d="M300,826 H620"/>
-        <path class="d thin" pathLength="1" d="M340,858 H580"/>
-      </svg>
+      <img class="ph" id="rb" src="img/before.jpg"><img class="ph" id="ra" src="img/after.jpg"><div id="wl"></div><div class="chip" id="cb">Before</div><div class="chip" id="ca">After</div>
       {{HUD:small}}
       <div class="pill">Villas, riads &amp; apartments</div>
     </div>
@@ -175,15 +170,8 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
     <div class="top label"><span class="n"><span>03</span><u></u><span>03</span></span><span>Services</span></div>
     <div class="title h"><span class="ln"><span class="in">Business</span></span></div>
     <div class="card">
-      <div class="fmt fill" style="left:70px;top:90px;width:318px;height:566px"><span class="play"></span>Reels</div>
-      <div class="fmt" style="left:428px;top:90px;width:422px;height:262px"><span class="play"></span>Brand film</div>
-      <div class="fmt" style="left:428px;top:392px;width:264px;height:264px"><span class="play"></span>Ads</div>
-      <div id="tl">
-        <span class="row" style="top:0;width:330px"></span><span class="row dim" style="top:0;left:346px;width:240px"></span><span class="row" style="top:0;left:602px;width:178px"></span>
-        <span class="row dim" style="top:46px;width:200px"></span><span class="row" style="top:46px;left:216px;width:410px"></span>
-        <span class="row" style="top:92px;width:120px"></span><span class="row dim" style="top:92px;left:136px;width:300px"></span><span class="row" style="top:92px;left:452px;width:260px"></span>
-        <span class="head" id="head"></span>
-      </div>
+      <img class="ph" id="fN" src="frames/N/0001.jpg">
+      {{HUD:small}}
       <div class="pill">Brand films, ads &amp; content</div>
     </div>
   </div></div>
@@ -264,16 +252,25 @@ function svc(id,t,next){
   if(next) A(id+' .inner',next-LEAD,SL,pushBack,EXPO,'forwards');
 }
 svc('#s3a',S3A,S3B); svc('#s3b',S3B,S3C); svc('#s3c',S3C,S4);
-A('#fB',S3A-LEAD,2.3,[{transform:'scale(1.12)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.7,.2,1)');
-A('#focus',S3A+0.42,0.34,[{transform:'scale(1.6)',opacity:0},{transform:'scale(.94)',opacity:1,offset:.7},{transform:'scale(1)',opacity:1}],'cubic-bezier(.3,.9,.3,1)');
-// arches draw
-document.querySelectorAll('#arch .d').forEach(p=>{p.style.strokeDasharray='1.02 1.02'});
-A('#arch .d',S3B+0.10,0.95,[{strokeDashoffset:1.02},{strokeDashoffset:0}],INOUT,'both',0.07);
-A('#sun',S3B+0.30,0.9,[{transform:'translateY(190px) scale(.5)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}]);
-// formats pop
-A('#s3c .fmt',S3C+0.16,0.6,[{transform:'scale(.7)',opacity:0},{transform:'scale(1)',opacity:1}],'cubic-bezier(.2,1.3,.3,1)','both',0.13);
-A('#tl .row',S3C+0.42,0.6,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],EXPO,'both',0.045);
-A('#head',S3C+0.3,1.5,[{left:'0px',opacity:0},{left:'40px',opacity:1,offset:.12},{left:'640px',opacity:1}],'cubic-bezier(.3,.1,.3,1)');
+const CUT=S3A+0.86, W0=S3B+0.50, W1=S3B+1.30;
+A('#pA',S3A-LEAD,1.3,[{transform:'scale(1.14)'},{transform:'scale(1.02)'}],'cubic-bezier(.2,.7,.2,1)');
+A('#pB',CUT,0.001,[{opacity:0},{opacity:1}],LIN);
+A('#pB',CUT,1.4,[{transform:'scale(1.12)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.7,.2,1)');
+A('#cut',CUT,0.26,[{opacity:.8},{opacity:0}],'cubic-bezier(.2,.6,.3,1)','forwards');
+A('#focus',S3A+0.36,0.34,[{transform:'scale(1.6)',opacity:0},{transform:'scale(.94)',opacity:1,offset:.7},{transform:'scale(1)',opacity:1}],'cubic-bezier(.3,.9,.3,1)');
+A('#focus',CUT,0.3,[{transform:'scale(1.25)'},{transform:'scale(1)'}],EXPO,'forwards');
+// before -> after wipe
+A('#rb',S3B-LEAD,2.4,[{transform:'scale(1.08)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.6,.3,1)');
+A('#ra',S3B-LEAD,2.4,[{transform:'scale(1.08)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.6,.3,1)');
+A('#ra',W0,W1-W0,[{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)'}],INOUT);
+A('#wl',W0,W1-W0,[{left:'0px',opacity:1},{left:'920px',opacity:1}],INOUT);
+A('#wl',W0-0.2,0.2,[{opacity:0},{opacity:1}],LIN);
+A('#wl',W1,0.15,[{opacity:1},{opacity:0}],LIN,'forwards');
+A('#cb',S3B+0.22,0.4,[{opacity:0,transform:'translateY(-14px)'},{opacity:1,transform:'translateY(0)'}]);
+A('#cb',W0+0.45,0.25,[{opacity:1},{opacity:0}],LIN,'forwards');
+A('#ca',W0+0.42,0.45,[{opacity:0,transform:'translateY(-14px)'},{opacity:1,transform:'translateY(0)'}]);
+// notebook clip
+A('#fN',S3C-LEAD,2.3,[{transform:'scale(1.10)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.7,.2,1)');
 
 /* ---------- S4 tagline ---------- */
 A('#s4',S4-LEAD,SL,slideIn);
@@ -309,7 +306,7 @@ function collect(){
 }
 
 const $=id=>document.getElementById(id);
-const fA=$('fA'),fB=$('fB'),fC=$('fC'),num=$('num'),s2=$('s2'),s5=$('s5'),closer=$('closer'),blk=$('blk');
+const fA=$('fA'),fN=$('fN'),fC=$('fC'),num=$('num'),s2=$('s2'),s5=$('s5'),closer=$('closer'),blk=$('blk');
 const tcs=[...document.querySelectorAll('.tc')],dots=[...document.querySelectorAll('.hud .dot')];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const eo=x=>1-Math.pow(1-clamp(x,0,1),3), ei=x=>Math.pow(clamp(x,0,1),3);
@@ -325,7 +322,7 @@ window.seek=async function(t){
   // footage
   const jobs=[];
   if(t>=DROP-0.1&&t<S3A+0.6) jobs.push(setFrame(fA,'A',clamp(Math.round((t-DROP)*30)+1,1,119)));
-  if(t>=S3A-0.4&&t<S3B+0.6) jobs.push(setFrame(fB,'B2',clamp(Math.round((t-(S3A-LEAD))*30)+1,1,73)));
+  if(t>=S3C-0.4&&t<S4+0.6) jobs.push(setFrame(fN,'N',clamp(Math.round((t-(S3C-LEAD))*30)+1,1,72)));
   if(t>=S4-0.4&&t<S5+0.2) jobs.push(setFrame(fC,'C',clamp(Math.round((t-(S4-LEAD))*30)+1,1,119)));
   await Promise.all(jobs);
   // timecode + rec
@@ -353,7 +350,7 @@ window.seek=async function(t){
   else{const x=eo((t-S5)/0.8);s5.style.clipPath=x>=1?'none':'polygon('+hex(1320*x,60-60*x).join(',')+')'}
   await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 };
-window.ready=(async()=>{await document.fonts.ready;await Promise.all(['600 100px "Clash Display"','700 100px "Clash Display"','500 30px "General Sans"','600 30px "General Sans"'].map(f=>document.fonts.load(f)));collect();await seek(0);return {a:anims.length,l1:logo1.length,l2:logo2.length}})();
+window.ready=(async()=>{await document.fonts.ready;await Promise.all(['600 100px "Clash Display"','700 100px "Clash Display"','500 30px "General Sans"','600 30px "General Sans"'].map(f=>document.fonts.load(f)));await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));collect();await seek(0);return {a:anims.length,l1:logo1.length,l2:logo2.length}})();
 </script>
 </body>
 </html>
