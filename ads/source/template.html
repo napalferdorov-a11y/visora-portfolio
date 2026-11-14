@@ -1,0 +1,359 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/local.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F3F0EA;--ink:#121212;--blue:#2E46C8;--dark:#0E0F0E}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--dark)}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:'General Sans',sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;overflow:hidden}
+.inner{position:absolute;inset:0;transform-origin:50% 40%}
+.h{font-family:'Clash Display',sans-serif;font-weight:600;letter-spacing:-.022em;line-height:.98}
+.ln{display:block;overflow:hidden;padding:.06em 0 .12em;margin:-.06em 0 -.12em}
+.ln>.in{display:block;will-change:transform}
+.label{font-weight:600;font-size:28px;letter-spacing:.18em;text-transform:uppercase}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* viewfinder HUD */
+.hud{position:absolute;left:56px;right:56px;top:150px;bottom:300px;pointer-events:none}
+.hud .c{position:absolute;width:54px;height:54px;border:3px solid rgba(255,255,255,.85)}
+.hud .tl{left:0;top:0;border-right:0;border-bottom:0}
+.hud .tr{right:0;top:0;border-left:0;border-bottom:0}
+.hud .bl{left:0;bottom:0;border-right:0;border-top:0}
+.hud .br{right:0;bottom:0;border-left:0;border-top:0}
+.hud .rec,.hud .tc{position:absolute;top:34px;font-weight:600;font-size:26px;letter-spacing:.14em;color:rgba(255,255,255,.9);font-variant-numeric:tabular-nums}
+.hud .rec{left:40px;display:flex;align-items:center;gap:14px}
+.hud .tc{right:40px}
+.hud .dot{width:16px;height:16px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(46,70,200,.28)}
+.hud.small{left:28px;right:28px;top:28px;bottom:28px}
+.hud.small .c{width:36px;height:36px;border-width:2.5px}
+.hud.small .rec,.hud.small .tc{top:22px;font-size:20px}
+.hud.small .rec{left:28px}.hud.small .tc{right:28px}
+.hud.small .dot{width:12px;height:12px}
+
+/* S1 hook */
+#s1{background:var(--dark)}
+#num{position:absolute;right:-30px;top:470px;font-family:'Clash Display';font-weight:700;font-size:1180px;line-height:1;color:transparent;-webkit-text-stroke:3px rgba(255,255,255,.3);transform-origin:70% 50%}
+#hook{position:absolute;left:84px;top:690px;font-size:132px}
+#segs{position:absolute;left:88px;top:1010px;display:flex;gap:14px}
+#segs i{display:block;width:150px;height:8px;border-radius:8px;background:rgba(255,255,255,.18);overflow:hidden;position:relative}
+#segs i b{position:absolute;inset:0;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+
+/* S2 logo reveal */
+#s2{background:#1B1D1A}
+#fA{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;transform-origin:45% 35%}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 62%,rgba(0,0,0,.5) 100%)}
+#logo1{position:absolute;left:150px;top:1010px;width:780px;height:141px;color:#fff;filter:drop-shadow(0 4px 28px rgba(0,0,0,.45))}
+#sub1{position:absolute;left:0;right:0;top:1196px;text-align:center;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+#cities{position:absolute;left:0;right:0;top:1510px;text-align:center;font-weight:500;font-size:27px;letter-spacing:.06em;color:rgba(255,255,255,.88);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+
+/* S3 services */
+.svc .top{position:absolute;left:84px;right:84px;top:190px;display:flex;justify-content:space-between;align-items:center}
+.svc .top .n{display:flex;align-items:center;gap:18px}
+.svc .top .n u{display:block;width:70px;height:3px;background:currentColor;text-decoration:none;transform-origin:0 50%}
+.svc .title{position:absolute;left:80px;top:268px;height:300px;font-size:152px;display:flex;flex-direction:column;justify-content:flex-end}
+.svc .card{position:absolute;left:80px;top:630px;width:920px;height:1000px;border-radius:40px;overflow:hidden}
+.svc .pill{position:absolute;left:34px;bottom:34px;padding:22px 38px;border-radius:100px;font-weight:600;font-size:34px;letter-spacing:-.005em;white-space:nowrap}
+#s3a{background:var(--bg);color:var(--ink)}
+#s3a .card{background:#1B1D1A}
+#fB{position:absolute;inset:0;width:920px;height:1000px;object-fit:cover;transform-origin:40% 30%}
+#s3a .pill{background:var(--bg);color:var(--ink)}
+#focus{position:absolute;left:236px;top:86px;width:330px;height:330px}
+#focus i{position:absolute;width:56px;height:56px;border:4px solid #fff}
+#focus i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}
+#focus i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}
+#focus i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}
+#focus i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
+#s3b{background:var(--ink);color:var(--bg)}
+#s3b .card{background:#1A1C1A;border:2px solid rgba(243,240,234,.16)}
+#s3b .pill{background:var(--bg);color:var(--ink)}
+#arch path,#arch line{fill:none;stroke:#F3F0EA;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+#arch .thin{stroke-width:3.5;opacity:.55}
+#sun{position:absolute;left:668px;top:118px;width:112px;height:112px;border-radius:50%;background:var(--blue)}
+#s3c{background:var(--blue);color:#fff}
+#s3c .card{background:#2439AE}
+#s3c .pill{background:#fff;color:var(--ink)}
+.fmt{position:absolute;border:5px solid #fff;border-radius:26px;display:flex;align-items:flex-end;justify-content:flex-start;padding:22px 24px;font-weight:600;font-size:26px;letter-spacing:.12em;text-transform:uppercase}
+.fmt .play{position:absolute;left:50%;top:50%;width:0;height:0;margin:-26px 0 0 -16px;border-left:42px solid #fff;border-top:26px solid transparent;border-bottom:26px solid transparent}
+.fmt.fill{background:#fff;color:var(--blue)}
+.fmt.fill .play{border-left-color:var(--blue)}
+#tl{position:absolute;left:70px;right:70px;top:712px;height:120px}
+#tl .row{position:absolute;left:0;height:30px;border-radius:10px;background:rgba(255,255,255,.9);transform-origin:0 50%}
+#tl .row.dim{background:rgba(255,255,255,.35)}
+#tl .head{position:absolute;top:-14px;width:5px;height:122px;background:#fff;border-radius:4px}
+#tl .head:before{content:"";position:absolute;left:-10px;top:-6px;border-left:12.5px solid transparent;border-right:12.5px solid transparent;border-top:16px solid #fff}
+
+/* S4 tagline */
+#s4{background:var(--dark)}
+#s4 .top{position:absolute;left:84px;top:250px;display:flex;align-items:center;gap:18px}
+#s4 .top b{display:block;width:16px;height:16px;border-radius:50%;background:var(--blue)}
+#strip{position:absolute;left:0;top:372px;width:1080px;height:608px;overflow:hidden;background:#1B1D1A}
+#fC{position:absolute;inset:0;width:1080px;height:608px;object-fit:cover;transform-origin:45% 40%}
+#tag{position:absolute;left:84px;top:1068px;font-size:108px}
+#tag .hl{position:relative;display:inline-block;padding:0 22px 6px;margin-left:-22px}
+#tag .hl .bar{position:absolute;left:0;right:0;top:6px;bottom:0;background:var(--blue);border-radius:14px;transform-origin:0 50%}
+#tag .hl .tx{position:relative}
+
+/* S5 CTA */
+#blk{background:#000}
+#s5{background:var(--bg);color:var(--ink)}
+#logo2{position:absolute;left:230px;top:470px;width:620px;height:112px;color:var(--ink)}
+#cta{position:absolute;left:0;right:0;top:680px;text-align:center;font-size:156px}
+#svc5{position:absolute;left:0;right:0;top:1040px;text-align:center;color:rgba(18,18,18,.66);font-size:25px}
+#btn{position:absolute;left:150px;top:1136px;width:780px;height:138px;border-radius:70px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;gap:24px;font-weight:600;font-size:45px;letter-spacing:-.01em;box-shadow:0 18px 44px rgba(46,70,200,.3)}
+#btn svg{width:56px;height:56px}
+#ring{position:absolute;left:150px;top:1136px;width:780px;height:138px;border-radius:70px;border:5px solid var(--blue);opacity:0}
+#tap{position:absolute;left:780px;top:1205px;width:90px;height:90px;margin:-45px;border-radius:50%;background:rgba(18,18,18,.22);border:3px solid rgba(18,18,18,.5);opacity:0}
+#phone{position:absolute;left:0;right:0;top:1326px;text-align:center;font-weight:600;font-size:62px;letter-spacing:.01em}
+#handle{position:absolute;left:0;right:0;top:1432px;text-align:center;font-weight:500;font-size:34px;color:rgba(18,18,18,.62)}
+
+#closer{position:absolute;inset:0;background:#000;clip-path:polygon(0 0,0 0,0 0)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1 · hook -->
+  <div class="scene" id="s1"><div class="inner">
+    <div id="num">3</div>
+    {{HUD}}
+    <div id="hook" class="h">
+      <span class="ln"><span class="in">Clients decide</span></span>
+      <span class="ln"><span class="in">in 3 seconds.</span></span>
+    </div>
+    <div id="segs"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+  </div></div>
+
+  <!-- S2 · footage + logo -->
+  <div class="scene" id="s2"><div class="inner">
+    <img id="fA" src="frames/A/0001.jpg">
+    <div class="scrim"></div>
+    {{HUD}}
+    <div id="logo1">{{LOGO1}}</div>
+    <div id="sub1" class="label"><span class="ln"><span class="in">Film &amp; photo production</span></span></div>
+    <div id="cities">Casablanca · Rabat · Marrakech · Tangier</div>
+  </div></div>
+
+  <!-- S3a · private shooting -->
+  <div class="scene svc" id="s3a"><div class="inner">
+    <div class="top label"><span class="n"><span>01</span><u></u><span>03</span></span><span>Services</span></div>
+    <div class="title h"><span class="ln"><span class="in">Private</span></span><span class="ln"><span class="in">shooting</span></span></div>
+    <div class="card">
+      <img id="fB" src="frames/B2/0001.jpg">
+      {{HUD:small}}
+      <div id="focus"><i></i><i></i><i></i><i></i></div>
+      <div class="pill">Portraits &amp; personal films</div>
+    </div>
+  </div></div>
+
+  <!-- S3b · real estate -->
+  <div class="scene svc" id="s3b"><div class="inner">
+    <div class="top label"><span class="n"><span>02</span><u></u><span>03</span></span><span>Services</span></div>
+    <div class="title h"><span class="ln"><span class="in">Real</span></span><span class="ln"><span class="in">estate</span></span></div>
+    <div class="card">
+      <div id="sun"></div>
+      <svg id="arch" viewBox="0 0 920 1000" width="920" height="1000" style="position:absolute;inset:0">
+        <path class="d thin" pathLength="1" d="M60,300 H860"/>
+        <path class="d" pathLength="1" d="M265,790 V300 H655 V790"/>
+        <path class="d" pathLength="1" d="M330,790 V520 A150,150 0 1 1 590,520 V790"/>
+        <path class="d" pathLength="1" d="M95,790 V590 A82,82 0 1 1 225,590 V790"/>
+        <path class="d" pathLength="1" d="M695,790 V590 A82,82 0 1 1 825,590 V790"/>
+        <path class="d" pathLength="1" d="M40,790 H880"/>
+        <path class="d thin" pathLength="1" d="M300,826 H620"/>
+        <path class="d thin" pathLength="1" d="M340,858 H580"/>
+      </svg>
+      {{HUD:small}}
+      <div class="pill">Villas, riads &amp; apartments</div>
+    </div>
+  </div></div>
+
+  <!-- S3c · business -->
+  <div class="scene svc" id="s3c"><div class="inner">
+    <div class="top label"><span class="n"><span>03</span><u></u><span>03</span></span><span>Services</span></div>
+    <div class="title h"><span class="ln"><span class="in">Business</span></span></div>
+    <div class="card">
+      <div class="fmt fill" style="left:70px;top:90px;width:318px;height:566px"><span class="play"></span>Reels</div>
+      <div class="fmt" style="left:428px;top:90px;width:422px;height:262px"><span class="play"></span>Brand film</div>
+      <div class="fmt" style="left:428px;top:392px;width:264px;height:264px"><span class="play"></span>Ads</div>
+      <div id="tl">
+        <span class="row" style="top:0;width:330px"></span><span class="row dim" style="top:0;left:346px;width:240px"></span><span class="row" style="top:0;left:602px;width:178px"></span>
+        <span class="row dim" style="top:46px;width:200px"></span><span class="row" style="top:46px;left:216px;width:410px"></span>
+        <span class="row" style="top:92px;width:120px"></span><span class="row dim" style="top:92px;left:136px;width:300px"></span><span class="row" style="top:92px;left:452px;width:260px"></span>
+        <span class="head" id="head"></span>
+      </div>
+      <div class="pill">Brand films, ads &amp; content</div>
+    </div>
+  </div></div>
+
+  <!-- S4 · tagline -->
+  <div class="scene" id="s4"><div class="inner">
+    <div class="top label"><b></b><span>Visora · Film &amp; photo</span></div>
+    <div id="strip"><img id="fC" src="frames/C/0001.jpg">{{HUD:small}}</div>
+    <div id="tag" class="h">
+      <span class="ln"><span class="in">Films and photos</span></span>
+      <span class="ln"><span class="in">for brands that</span></span>
+      <span class="ln"><span class="in"><span class="hl"><span class="bar"></span><span class="tx">need results.</span></span></span></span>
+    </div>
+  </div></div>
+
+  <div id="closer"></div>
+  <div class="scene" id="blk" style="opacity:0"></div>
+
+  <!-- S5 · call to action -->
+  <div class="scene" id="s5"><div class="inner">
+    <div id="logo2">{{LOGO2}}</div>
+    <div id="cta" class="h"><span class="ln"><span class="in">Book your</span></span><span class="ln"><span class="in">shoot.</span></span></div>
+    <div id="svc5" class="label">Private shooting · Real estate · Business</div>
+    <div id="ring"></div>
+    <div id="btn">
+      <svg viewBox="0 0 56 56" fill="none"><path d="M28 6C15.85 6 6 15.4 6 27c0 4.2 1.3 8.1 3.5 11.4L7 50l12.2-2.9C21.9 48.3 24.9 49 28 49c12.15 0 22-9.4 22-22S40.15 6 28 6Z" stroke="#fff" stroke-width="4.5" stroke-linejoin="round"/><circle cx="19.5" cy="27.5" r="2.8" fill="#fff"/><circle cx="28" cy="27.5" r="2.8" fill="#fff"/><circle cx="36.5" cy="27.5" r="2.8" fill="#fff"/></svg>
+      <span>Message us on WhatsApp</span>
+    </div>
+    <div id="tap"></div>
+    <div id="phone" class="tnum"><span class="ln"><span class="in">+66 65 870 5616</span></span></div>
+    <div id="handle">@visoraprod</div>
+  </div></div>
+
+  <div id="flash"></div>
+</div>
+
+<script>
+const EXPO='cubic-bezier(.16,1,.3,1)', INOUT='cubic-bezier(.65,0,.35,1)', EIN='cubic-bezier(.6,0,.85,.2)', LIN='linear';
+const anims=[];
+function A(sel,t0,dur,kf,ease=EXPO,fill='both',stagger=0){
+  const els=typeof sel==='string'?[...document.querySelectorAll(sel)]:[sel];
+  els.forEach((el,i)=>{const a=el.animate(kf,{duration:dur*1000,delay:(t0+i*stagger)*1000,fill,easing:ease});a.pause();anims.push(a)});
+}
+const up=[{transform:'translateY(112%)'},{transform:'translateY(0)'}];
+const out=[{transform:'translateY(0)'},{transform:'translateY(-112%)'}];
+const fade=[{opacity:0},{opacity:1}];
+const slideIn=[{transform:'translateY(100%)',borderRadius:'70px 70px 0 0'},{transform:'translateY(0)',borderRadius:'0px'}];
+const pushBack=[{transform:'scale(1)',filter:'brightness(1)'},{transform:'scale(.93)',filter:'brightness(.55)'}];
+
+// beat grid (seconds in the ad)
+const DROP=3.30, S3A=6.78, S3B=8.38, S3C=10.26, S4=11.86, HL=13.72, S5=15.32, TAP=17.20, BLINK=18.80, LEAD=0.24, SL=0.62;
+
+/* ---------- S1 hook ---------- */
+A('#s1 .hud',0.10,0.5,fade,LIN);
+A('#hook .in',0.28,0.8,up,EXPO,'both',0.24);
+A('#segs',0.9,0.4,fade,LIN);
+A('#segs i:nth-child(1) b',1.25,0.55,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+A('#segs i:nth-child(2) b',1.95,0.55,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+A('#segs i:nth-child(3) b',2.65,0.55,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+A('#hook .in',3.00,0.28,out,EIN,'forwards',0.04);
+A('#segs',3.00,0.22,[{opacity:1},{opacity:0}],LIN,'forwards');
+
+/* ---------- S2 logo ---------- */
+A('#fA',DROP,3.9,[{transform:'scale(1.0)'},{transform:'scale(1.08)'}],LIN);
+A('#s2 .hud',DROP+0.1,0.5,fade,LIN);
+A('#sub1 .in',4.90-0.04,0.7,up);
+A('#cities',5.25,0.6,[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}]);
+A('#s2 .inner',S3A-LEAD,SL,pushBack,EXPO,'forwards');
+
+/* ---------- S3 services ---------- */
+function svc(id,t,next){
+  A(id,t-LEAD,SL,slideIn);
+  A(id+' .top',t-0.05,0.5,fade,LIN);
+  A(id+' .top u',t,0.6,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+  A(id+' .title .in',t-0.06,0.7,up,EXPO,'both',0.09);
+  A(id+' .card',t-0.10,0.8,[{transform:'translateY(160px) scale(.94)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}]);
+  A(id+' .pill',t+0.38,0.55,[{transform:'translateY(40px)',opacity:0},{transform:'translateY(0)',opacity:1}]);
+  if(next) A(id+' .inner',next-LEAD,SL,pushBack,EXPO,'forwards');
+}
+svc('#s3a',S3A,S3B); svc('#s3b',S3B,S3C); svc('#s3c',S3C,S4);
+A('#fB',S3A-LEAD,2.3,[{transform:'scale(1.12)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.7,.2,1)');
+A('#focus',S3A+0.42,0.34,[{transform:'scale(1.6)',opacity:0},{transform:'scale(.94)',opacity:1,offset:.7},{transform:'scale(1)',opacity:1}],'cubic-bezier(.3,.9,.3,1)');
+// arches draw
+document.querySelectorAll('#arch .d').forEach(p=>{p.style.strokeDasharray='1.02 1.02'});
+A('#arch .d',S3B+0.10,0.95,[{strokeDashoffset:1.02},{strokeDashoffset:0}],INOUT,'both',0.07);
+A('#sun',S3B+0.30,0.9,[{transform:'translateY(190px) scale(.5)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}]);
+// formats pop
+A('#s3c .fmt',S3C+0.16,0.6,[{transform:'scale(.7)',opacity:0},{transform:'scale(1)',opacity:1}],'cubic-bezier(.2,1.3,.3,1)','both',0.13);
+A('#tl .row',S3C+0.42,0.6,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],EXPO,'both',0.045);
+A('#head',S3C+0.3,1.5,[{left:'0px',opacity:0},{left:'40px',opacity:1,offset:.12},{left:'640px',opacity:1}],'cubic-bezier(.3,.1,.3,1)');
+
+/* ---------- S4 tagline ---------- */
+A('#s4',S4-LEAD,SL,slideIn);
+A('#s4 .top',S4,0.5,fade,LIN);
+A('#strip',S4-0.02,0.85,[{clipPath:'inset(50% 0 50% 0)'},{clipPath:'inset(0% 0 0% 0)'}],EXPO);
+A('#fC',S4-LEAD,4.0,[{transform:'scale(1.10)'},{transform:'scale(1.0)'}],'cubic-bezier(.2,.6,.3,1)');
+A('#tag .ln:nth-child(1) .in',S4+0.30,0.75,up);
+A('#tag .ln:nth-child(2) .in',S4+0.62,0.75,up);
+A('#tag .ln:nth-child(3) .in',HL-0.10,0.7,up);
+A('#tag .bar',HL+0.02,0.6,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],EXPO);
+
+/* ---------- S5 CTA ---------- */
+A('#cta .in',S5+0.42,0.8,up,EXPO,'both',0.11);
+A('#svc5',S5+0.85,0.6,[{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'translateY(0)'}]);
+A('#btn',S5+1.05,0.75,[{transform:'translateY(60px) scale(.9)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],'cubic-bezier(.2,1.2,.3,1)');
+A('#tap',TAP-0.42,0.42,[{opacity:0,transform:'translate(60px,80px) scale(1.3)'},{opacity:1,transform:'translate(0,0) scale(1)'}],EXPO);
+A('#tap',TAP,0.5,[{opacity:1,transform:'scale(1)'},{opacity:1,transform:'scale(.72)',offset:.2},{opacity:0,transform:'scale(1.5)'}],LIN,'forwards');
+A('#btn',TAP,0.5,[{transform:'scale(1)'},{transform:'scale(.945)',offset:.22},{transform:'scale(1.02)',offset:.6},{transform:'scale(1)'}],LIN,'forwards');
+A('#ring',TAP+0.06,0.8,[{opacity:.75,transform:'scale(1)'},{opacity:0,transform:'scale(1.16,1.7)'}],'cubic-bezier(.2,.7,.3,1)','forwards');
+A('#phone .in',TAP+0.14,0.75,up);
+A('#handle',TAP+0.55,0.6,[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}]);
+A('#flash',DROP,0.34,[{opacity:.85},{opacity:0}],'cubic-bezier(.2,.6,.3,1)','forwards');
+A('#flash',S5,0.30,[{opacity:.7},{opacity:0}],'cubic-bezier(.2,.6,.3,1)','forwards');
+
+/* ---------- logo animations (CSS inside the SVG) ---------- */
+let logo1=[],logo2=[];
+function collect(){
+  document.getAnimations().forEach(a=>{
+    if(anims.includes(a))return;
+    const el=a.effect&&a.effect.target; if(!el)return;
+    if(el.closest('#logo1')){a.pause();logo1.push(a)} else if(el.closest('#logo2')){a.pause();logo2.push(a)}
+  });
+}
+
+const $=id=>document.getElementById(id);
+const fA=$('fA'),fB=$('fB'),fC=$('fC'),num=$('num'),s2=$('s2'),s5=$('s5'),closer=$('closer'),blk=$('blk');
+const tcs=[...document.querySelectorAll('.tc')],dots=[...document.querySelectorAll('.hud .dot')];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eo=x=>1-Math.pow(1-clamp(x,0,1),3), ei=x=>Math.pow(clamp(x,0,1),3);
+function hex(r,rot){let p=[];for(let k=0;k<6;k++){const a=(rot+60*k)*Math.PI/180;p.push((540+r*Math.cos(a)).toFixed(1)+'px '+(960+r*Math.sin(a)).toFixed(1)+'px')}return p}
+const pad=(n,l=4)=>String(n).padStart(l,'0');
+async function setFrame(img,dir,idx){const src='frames/'+dir+'/'+pad(idx)+'.jpg';if(img.dataset.s!==src){img.dataset.s=src;img.src=src;try{await img.decode()}catch(e){}}}
+
+window.seek=async function(t){
+  const ms=t*1000;
+  anims.forEach(a=>a.currentTime=ms);
+  logo1.forEach(a=>a.currentTime=Math.max(0,(t-(DROP+0.10))*1.15)*1000);
+  logo2.forEach(a=>a.currentTime=Math.max(0,(t-(S5+0.14))*1.42)*1000);
+  // footage
+  const jobs=[];
+  if(t>=DROP-0.1&&t<S3A+0.6) jobs.push(setFrame(fA,'A',clamp(Math.round((t-DROP)*30)+1,1,119)));
+  if(t>=S3A-0.4&&t<S3B+0.6) jobs.push(setFrame(fB,'B2',clamp(Math.round((t-(S3A-LEAD))*30)+1,1,73)));
+  if(t>=S4-0.4&&t<S5+0.2) jobs.push(setFrame(fC,'C',clamp(Math.round((t-(S4-LEAD))*30)+1,1,119)));
+  await Promise.all(jobs);
+  // timecode + rec
+  const f=Math.floor(t*24),tc='00:00:'+pad(Math.floor(f/24),2)+':'+pad(f%24,2);
+  tcs.forEach(e=>e.textContent=tc);
+  const on=(t%1)<0.55?1:.25; dots.forEach(d=>d.style.opacity=on);
+  // countdown numeral
+  const marks=[1.25,1.95,2.65];let k=-1;marks.forEach((m,i)=>{if(t>=m)k=i});
+  if(k<0){num.style.opacity=0}else{
+    const dt=t-marks[k];num.textContent=String(3-k);
+    let s=1+0.10*Math.exp(-dt*9),o=Math.min(1,dt/0.08);
+    if(t>3.0){const x=ei((t-3.0)/0.3);s=1+0.5*x;o=1-x}
+    num.style.opacity=o;num.style.transform='scale('+s.toFixed(4)+')';
+  }
+  // hex iris: open on the drop
+  if(t<DROP){s2.style.clipPath='polygon(0 0,0 0,0 0)'}
+  else{const x=eo((t-DROP)/0.75);s2.style.clipPath=x>=1?'none':'polygon('+hex(1320*x,-90+90*x).join(',')+')'}
+  // hex iris: close before CTA, then open on cream
+  const c0=S5-0.34;
+  if(t<c0){closer.style.clipPath='polygon(0 0,0 0,0 0)'}
+  else if(t<S5){const x=ei((t-c0)/0.32);closer.style.clipPath='polygon(evenodd,0 0,1080px 0,1080px 1920px,0 1920px,0 0,'+hex(1320*(1-x),60*x).concat(hex(1320*(1-x),60*x)[0]).join(',')+')'}
+  else{closer.style.clipPath='none'}
+  blk.style.opacity=t>=S5?1:0;
+  if(t<S5){s5.style.clipPath='polygon(0 0,0 0,0 0)'}
+  else{const x=eo((t-S5)/0.8);s5.style.clipPath=x>=1?'none':'polygon('+hex(1320*x,60-60*x).join(',')+')'}
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+};
+window.ready=(async()=>{await document.fonts.ready;await Promise.all(['600 100px "Clash Display"','700 100px "Clash Display"','500 30px "General Sans"','600 30px "General Sans"'].map(f=>document.fonts.load(f)));collect();await seek(0);return {a:anims.length,l1:logo1.length,l2:logo2.length}})();
+</script>
+</body>
+</html>
