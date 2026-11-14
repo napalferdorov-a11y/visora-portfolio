@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/local.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2E46C8}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#000;font-family:'General Sans',sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+#shots{position:absolute;inset:0;z-index:0;isolation:isolate}
+#shots img{position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;visibility:hidden;will-change:transform}
+.ov{position:absolute;inset:0;pointer-events:none}
+#vig{background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,.38) 100%)}
+#scrim{background:linear-gradient(180deg,rgba(0,0,0,.30) 0%,rgba(0,0,0,0) 20%,rgba(0,0,0,0) 48%,rgba(0,0,0,.62) 100%);opacity:0}
+#dim{background:#05070a;opacity:0}
+#flash{background:#fff;opacity:0}
+.h{font-family:'Clash Display',sans-serif;font-weight:600;letter-spacing:-.02em;line-height:.98}
+.ln{display:block;overflow:hidden;padding:.08em 0 .14em;margin:-.08em 0 -.14em}
+.ln>.in{display:block}
+.sh{text-shadow:0 3px 30px rgba(0,0,0,.55)}
+
+#mark{position:absolute;left:432px;top:168px;width:216px;height:39px;color:#fff;opacity:0;filter:drop-shadow(0 2px 14px rgba(0,0,0,.6))}
+#hook{position:absolute;left:72px;top:1150px;font-size:100px}
+.stamp{position:absolute;left:72px;top:1130px}
+.stamp .k{font-weight:600;font-size:30px;letter-spacing:.34em;text-transform:uppercase;display:flex;align-items:center;gap:20px;margin-bottom:8px}
+.stamp .k i{display:block;width:74px;height:4px;background:#fff;transform-origin:0 50%}
+.stamp .w{font-size:232px;text-transform:uppercase;letter-spacing:-.035em;line-height:.9}
+#tag{position:absolute;left:72px;top:1090px;white-space:nowrap;font-size:96px;text-transform:uppercase;letter-spacing:-.03em}
+#tag .hl{position:relative;display:inline-block;padding:0 20px 2px;margin-left:-20px}
+#tag .hl .bar{position:absolute;left:0;right:0;top:10px;bottom:0;background:var(--blue);transform-origin:0 50%}
+#tag .hl .tx{position:relative}
+
+#cta{position:absolute;inset:0}
+#logo{position:absolute;left:200px;top:470px;width:680px;height:122px;color:#fff;filter:drop-shadow(0 4px 30px rgba(0,0,0,.5))}
+#book{position:absolute;left:0;right:0;top:700px;white-space:nowrap;text-align:center;font-size:100px;text-transform:uppercase;letter-spacing:-.03em}
+#btn{position:absolute;left:160px;top:880px;width:760px;height:132px;border-radius:70px;background:#fff;color:#0b0d10;display:flex;align-items:center;justify-content:center;gap:22px;font-weight:600;font-size:44px;letter-spacing:-.01em}
+#btn svg{width:54px;height:54px}
+#ring{position:absolute;left:160px;top:880px;width:760px;height:132px;border-radius:70px;border:5px solid #fff;opacity:0}
+#phone{position:absolute;left:0;right:0;top:1052px;text-align:center;font-weight:600;font-size:60px;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+#svc{position:absolute;left:0;right:0;top:1164px;text-align:center;font-weight:600;font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.86)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="shots"></div>
+  <div class="ov" id="dim"></div>
+  <div class="ov" id="vig"></div>
+  <div class="ov" id="scrim"></div>
+
+  <div id="mark">{{LOGO_S}}</div>
+
+  <div id="hook" class="h sh">
+    <span class="ln"><span class="in">Your brand,</span></span>
+    <span class="ln"><span class="in">shot like a film.</span></span>
+  </div>
+
+  <div class="stamp sh" id="st1"><div class="k"><i></i><span>The</span></div><div class="w h"><span class="ln"><span class="in">Idea.</span></span></div></div>
+  <div class="stamp sh" id="st2"><div class="k"><i></i><span>The</span></div><div class="w h"><span class="ln"><span class="in">Shoot.</span></span></div></div>
+  <div class="stamp sh" id="st3"><div class="k"><i></i><span>The</span></div><div class="w h"><span class="ln"><span class="in">Result.</span></span></div></div>
+
+  <div id="tag" class="h sh">
+    <span class="ln"><span class="in">Films &amp; photos</span></span>
+    <span class="ln"><span class="in">for brands that</span></span>
+    <span class="ln"><span class="in"><span class="hl"><span class="bar"></span><span class="tx">need results.</span></span></span></span>
+  </div>
+
+  <div id="cta">
+    <div id="logo">{{LOGO_L}}</div>
+    <div id="book" class="h sh"><span class="ln"><span class="in">Book your shoot</span></span></div>
+    <div id="ring"></div>
+    <div id="btn">
+      <svg viewBox="0 0 56 56" fill="none"><path d="M28 6C15.85 6 6 15.4 6 27c0 4.2 1.3 8.1 3.5 11.4L7 50l12.2-2.9C21.9 48.3 24.9 49 28 49c12.15 0 22-9.4 22-22S40.15 6 28 6Z" stroke="#0b0d10" stroke-width="4.5" stroke-linejoin="round"/><circle cx="19.5" cy="27.5" r="2.8" fill="#0b0d10"/><circle cx="28" cy="27.5" r="2.8" fill="#0b0d10"/><circle cx="36.5" cy="27.5" r="2.8" fill="#0b0d10"/></svg>
+      <span>Message us on WhatsApp</span>
+    </div>
+    <div id="phone" class="sh"><span class="ln"><span class="in">+66 65 870 5616</span></span></div>
+    <div id="svc" class="sh">Private shoots · Brand films · @visoraprod</div>
+  </div>
+
+  <div class="ov" id="flash"></div>
+</div>
+
+<script>
+const EXPO='cubic-bezier(.16,1,.3,1)', EIN='cubic-bezier(.6,0,.85,.2)', LIN='linear';
+const anims=[];
+function A(sel,t0,dur,kf,ease=EXPO,fill='both',stagger=0){
+  [...document.querySelectorAll(sel)].forEach((el,i)=>{const a=el.animate(kf,{duration:dur*1000,delay:(t0+i*stagger)*1000,fill,easing:ease});a.pause();anims.push(a)});
+}
+const up=[{transform:'translateY(115%)'},{transform:'translateY(0)'}], out=[{transform:'translateY(0)'},{transform:'translateY(-115%)'}];
+const fadeIn=[{opacity:0},{opacity:1}], fadeOut=[{opacity:1},{opacity:0}];
+
+/* ---- beat grid (seconds in the edit; music starts 7.75 s into the track) ---- */
+const BIG=[0.58,0.98,3.72,4.10,6.86,7.23,9.60,12.73,15.88,19.02,22.17,25.32,29.23];
+const HITS=[0.16,0.34,0.58,0.98,1.75,2.52,3.30,3.49,3.72,4.10,4.89,5.66,6.45,6.63,6.86,7.23,8.04,8.81,9.60,9.78,9.99,10.37,11.17,11.95,12.73,12.92,13.14,13.51,14.32,15.10,15.88,16.06,16.28,16.65,17.47,18.24,19.02,19.24,19.43,19.80,20.61,21.38,22.17,22.35,22.58,22.95,23.76,24.53,25.32,25.50,25.71,26.08,26.89,27.67,28.45,28.64,28.86,29.23];
+const FLASH=[[0.58,.55],[0.98,.4],[3.72,.5],[9.60,.6],[9.78,.45],[9.99,.45],[15.88,.5],[19.24,.4],[19.43,.4],[22.17,.35],[25.32,.5],[29.23,.3]];
+
+/* ---- the edit: every shot is full screen ---- */
+const SH=[
+ // hook
+ {a:0.00,b:0.58,img:'w202', z:[1.42,1.16], org:'50% 34%'},
+ {a:0.58,b:0.98,img:'v436c',z:[1.18,1.08], org:'50% 30%'},
+ {a:0.98,b:3.30,seq:'S3',n:298,f0:1,rate:1,z:[1.12,1.0], org:'60% 30%'},
+ // the idea
+ {a:3.30,b:3.49,seq:'NBW',n:55,f0:16,rate:1,z:[1.0,1.0]},
+ {a:3.49,b:3.72,seq:'NBW',n:55,f0:24,rate:1,z:[1.28,1.28], org:'40% 60%'},
+ {a:3.72,b:4.10,seq:'NBP',n:36,f0:4,rate:1,z:[1.14,1.04]},
+ {a:4.10,b:4.89,seq:'NBF',n:139,f0:8,rate:1,z:[1.12,1.02], org:'60% 60%'},
+ {a:4.89,b:5.66,seq:'IDEA2',n:42,f0:10,rate:1,z:[1.0,1.10], org:'45% 55%'},
+ // the shoot
+ {a:5.66,b:6.86,seq:'HUT',n:140,f0:6,rate:1,z:[1.0,1.06], org:'45% 55%'},
+ {a:6.86,b:7.23,seq:'HUT',n:140,f0:46,rate:1,z:[1.62,1.56], org:'36% 66%'},
+ {a:7.23,b:8.81,seq:'SIL',n:116,f0:1,rate:1,z:[1.0,1.10], org:'50% 45%'},
+ {a:8.81,b:9.60,seq:'OCN',n:180,f0:1,rate:1,z:[1.16,1.06], whip:1},
+ // the result
+ {a:9.60,b:9.78,img:'v434', z:[1.04,1.04]},
+ {a:9.78,b:9.99,img:'v441', z:[1.06,1.06]},
+ {a:9.99,b:10.37,img:'v436c',z:[1.12,1.04], org:'50% 30%'},
+ {a:10.37,b:11.17,img:'w218',z:[1.22,1.10], org:'55% 38%'},
+ {a:11.17,b:11.95,img:'v441c',z:[1.0,1.10], org:'50% 25%'},
+ {a:11.95,b:12.73,img:'w202', z:[1.10,1.24], org:'50% 36%'},
+ {a:12.73,b:13.51,seq:'S3',n:298,f0:150,rate:1,z:[1.28,1.16], org:'62% 28%'},
+ {a:13.51,b:14.32,img:'v434c',z:[1.14,1.0], org:'50% 30%'},
+ {a:14.32,b:15.10,seq:'OCN',n:180,f0:70,rate:1,z:[1.0,1.12]},
+ {a:15.10,b:15.88,seq:'SIL',n:116,f0:60,rate:1,z:[1.24,1.14], org:'50% 40%'},
+ // fast montage
+ {a:15.88,b:16.65,seq:'NBF',n:139,f0:50,rate:2,z:[1.34,1.10], org:'62% 58%'},
+ {a:16.65,b:17.47,img:'v436', z:[1.0,1.14], org:'50% 40%'},
+ {a:17.47,b:18.24,seq:'HUT',n:140,f0:24,rate:1.6,z:[1.34,1.30], org:'36% 64%', whip:-1},
+ {a:18.24,b:19.02,img:'w218',z:[1.34,1.18], org:'55% 36%'},
+ {a:19.02,b:19.24,seq:'NBP',n:36,f0:8,rate:1,z:[1.12,1.10]},
+ {a:19.24,b:19.43,img:'v441', z:[1.02,1.02]},
+ {a:19.43,b:19.80,img:'v434c',z:[1.12,1.06], org:'50% 30%'},
+ {a:19.80,b:20.61,seq:'S3',n:298,f0:40,rate:2,z:[1.12,1.0], org:'60% 30%'},
+ {a:20.61,b:21.38,img:'w202', z:[1.34,1.12], org:'50% 34%'},
+ {a:21.38,b:22.17,seq:'SIL',n:116,f0:12,rate:1.5,z:[1.06,1.18], org:'50% 42%'},
+ // tagline + call to action
+ {a:22.17,b:25.32,img:'v441', z:[1.20,1.02], org:'50% 30%'},
+ {a:25.32,b:30.20,img:'v434', z:[1.02,1.16], org:'50% 62%'},
+];
+const shots=document.getElementById('shots');
+SH.forEach((s,i)=>{const im=document.createElement('img');if(s.img)im.src='img/'+s.img+'.jpg';shots.appendChild(im);s.el=im;s.el.style.zIndex=i;s.el.style.transformOrigin=s.org||'50% 50%'});
+
+/* ---- text ---- */
+A('#mark',3.30,0.5,fadeIn,LIN); A('#mark',25.1,0.2,fadeOut,LIN,'forwards');
+A('#hook .ln:nth-child(1) .in',1.04,0.6,up); A('#hook .ln:nth-child(2) .in',1.73,0.6,up);
+A('#hook .in',3.08,0.2,out,EIN,'forwards',0.03);
+function stamp(id,t0,t1){
+  A(id+' .k',t0,0.3,fadeIn,LIN); A(id+' .k i',t0,0.5,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+  A(id+' .w .in',t0+0.02,0.5,up);
+  A(id+' .w .in',t1-0.16,0.16,out,EIN,'forwards'); A(id+' .k',t1-0.16,0.14,fadeOut,LIN,'forwards');
+}
+stamp('#st1',3.72,5.64); stamp('#st2',5.70,8.78); stamp('#st3',9.99,12.70);
+A('#tag .ln:nth-child(1) .in',22.20,0.6,up); A('#tag .ln:nth-child(2) .in',22.93,0.6,up); A('#tag .ln:nth-child(3) .in',23.72,0.6,up);
+A('#tag .bar',23.78,0.5,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+A('#tag .in',25.14,0.18,out,EIN,'forwards',0.02);
+A('#scrim',1.0,0.3,fadeIn,LIN); A('#scrim',13.0,0.5,fadeOut,LIN,'forwards'); A('#scrim',22.0,0.3,fadeIn,LIN,'forwards');
+A('#dim',22.17,0.5,[{opacity:0},{opacity:.22}],LIN); A('#dim',25.32,0.6,[{opacity:.22},{opacity:.5}],LIN,'forwards');
+A('#book .in',26.05,0.6,up);
+A('#btn',26.86,0.6,[{transform:'translateY(50px) scale(.9)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],'cubic-bezier(.2,1.2,.3,1)');
+A('#phone .in',27.30,0.6,up);
+A('#svc',27.67,0.5,[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}]);
+A('#btn',28.45,0.45,[{transform:'scale(1)'},{transform:'scale(.95)',offset:.25},{transform:'scale(1.02)',offset:.6},{transform:'scale(1)'}],LIN,'forwards');
+A('#ring',28.50,0.8,[{opacity:.8,transform:'scale(1)'},{opacity:0,transform:'scale(1.14,1.7)'}],'cubic-bezier(.2,.7,.3,1)','forwards');
+
+let logoL=[],logoS=[];
+function collect(){document.getAnimations().forEach(a=>{if(anims.includes(a))return;const el=a.effect&&a.effect.target;if(!el)return;if(el.closest('#logo')){a.pause();logoL.push(a)}else if(el.closest('#mark')){a.pause();logoS.push(a)}})}
+
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), eo=x=>1-Math.pow(1-clamp(x,0,1),3), pad=n=>String(n).padStart(4,'0');
+const flashEl=document.getElementById('flash'), cta=document.getElementById('cta');
+async function setSrc(img,src){if(img.dataset.s!==src){img.dataset.s=src;img.src=src;try{await img.decode()}catch(e){}}}
+const WH=0.15;
+window.seek=async function(t){
+  anims.forEach(a=>a.currentTime=t*1000);
+  logoS.forEach(a=>a.currentTime=3600);
+  logoL.forEach(a=>a.currentTime=Math.max(0,(t-25.38)*1.24)*1000);
+  cta.style.visibility=t>=25.3?'visible':'hidden';
+  // shake on the big hits
+  let sx=0,sy=0;BIG.forEach((h,k)=>{const d=t-h;if(d>=0&&d<0.45){const a=15*Math.exp(-d*11);sx+=a*Math.sin(d*61+k*2.1);sy+=a*Math.cos(d*53+k*1.3)}});
+  const jobs=[];
+  SH.forEach((s,i)=>{
+    const nx=SH[i+1], hold=(nx&&nx.whip)?WH:0;
+    if(t<s.a||t>=s.b+hold){s.el.style.visibility='hidden';return}
+    const p=clamp((t-s.a)/(s.b-s.a),0,1);
+    let z=s.z[0]+(s.z[1]-s.z[0])*eo(p);
+    HITS.forEach(h=>{const d=t-h;if(d>=0&&d<0.5&&h>=s.a-0.001&&h<s.b)z*=1+(Math.abs(h-s.a)<0.01?0.07:0.04)*Math.exp(-d*13)});
+    let x=sx,blur=0;
+    if(s.whip&&t-s.a<WH){const q=eo((t-s.a)/WH);x+=(1-q)*1080*s.whip;blur=26*(1-q)}
+    if(hold&&t>=s.b){const q=eo((t-s.b)/WH);x-=q*1080*nx.whip;blur=26*q}
+    s.el.style.visibility='visible';
+    s.el.style.transform='translate('+x.toFixed(2)+'px,'+sy.toFixed(2)+'px) scale('+z.toFixed(4)+')';
+    s.el.style.filter=blur>0.5?'blur('+blur.toFixed(1)+'px)':'none';
+    if(s.seq){const f=clamp(Math.round(s.f0+(t-s.a)*30*s.rate),1,s.n);jobs.push(setSrc(s.el,'seq/'+s.seq+'/'+pad(f)+'.jpg'))}
+  });
+  await Promise.all(jobs);
+  let fl=0;FLASH.forEach(([h,a])=>{const d=t-h;if(d>=0&&d<0.3)fl=Math.max(fl,a*Math.exp(-d*20))});
+  flashEl.style.opacity=fl.toFixed(3);
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+};
+window.ready=(async()=>{await document.fonts.ready;await Promise.all(['600 100px "Clash Display"','500 30px "General Sans"','600 30px "General Sans"'].map(f=>document.fonts.load(f)));await Promise.all([...document.images].filter(i=>i.src).map(i=>i.decode().catch(()=>{})));collect();await seek(0);return {a:anims.length,l:logoL.length,s:logoS.length}})();
+</script>
+</body>
+</html>
