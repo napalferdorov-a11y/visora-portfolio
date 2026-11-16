@@ -5,10 +5,11 @@ const T = {
   fr: {
     file: 'CV-Nizar-Zouhri-Videaste-Photographe-FR.pdf',
     title: 'Vidéaste & Photographe — Production de contenu pour marques',
-    loc: 'Rabat, Maroc · Disponible au Maroc et en déplacement',
+    loc: 'Rabat, Maroc · Expérience internationale · Disponible en déplacement',
     profileH: 'Profil',
     profile: "Fondateur de VISORA Production, studio de production créative au Maroc. Je réalise des films de marque, des publicités et du contenu mensuel pour les entreprises, du script jusqu'aux fichiers finaux. Je dirige une équipe de monteurs et de créateurs de contenu, ce qui me permet de livrer vite et en volume. Je travaille en direct avec les marques et en marque blanche pour les agences de communication.",
     expH: 'Expérience',
+    intl: ['Vidéaste & photographe — projets internationaux', 'Russie · Bali (Indonésie) · Thaïlande', 'Projets récents', "Tournages photo et vidéo à l'étranger pour des marques et des clients privés, de la préparation au montage final."],
     role: 'Fondateur, vidéaste & photographe',
     co: 'VISORA Production · Maroc',
     dates: 'Indépendant',
@@ -53,10 +54,11 @@ const T = {
   en: {
     file: 'CV-Nizar-Zouhri-Videographer-Photographer-EN.pdf',
     title: 'Videographer & Photographer — Brand content production',
-    loc: 'Rabat, Morocco · Available across Morocco and for travel',
+    loc: 'Rabat, Morocco · International experience · Available for travel',
     profileH: 'Profile',
     profile: "Founder of VISORA Production, a creative production studio in Morocco. I make brand films, ads and monthly content for companies, from the script to the final files. I lead a team of editors and content creators, so projects are delivered fast and at volume. I work directly with brands and as a white-label partner for advertising agencies.",
     expH: 'Experience',
+    intl: ['International videographer & photographer', 'Russia · Bali (Indonesia) · Thailand', 'Latest projects', 'Photo and video shoots abroad for brands and private clients, from preparation to the final edit.'],
     role: 'Founder, videographer & photographer',
     co: 'VISORA Production · Morocco',
     dates: 'Freelance',
@@ -125,7 +127,8 @@ function html(t) {
   p { margin-bottom: 2mm; }
   .role { display: flex; justify-content: space-between; align-items: baseline; }
   .role strong { font-size: 11pt; }
-  .role span { font-size: 8.5pt; color: #6b6b66; }
+  .role span { font-size: 8.5pt; color: #6b6b66; white-space: nowrap; padding-left: 3mm; }
+  .intl { margin-bottom: 3.5mm; }
   .co { color: #4f5844; font-weight: 600; font-size: 9.5pt; margin-bottom: 2.5mm; }
   main ul { padding-left: 4.5mm; }
   main li { margin-bottom: 1.1mm; }
@@ -158,13 +161,14 @@ function html(t) {
     <h2>${t.profileH}</h2>
     <p>${esc(t.profile)}</p>
     <h2>${t.expH}</h2>
+    <div class="role"><strong>${esc(t.intl[0])}</strong><span>${esc(t.intl[2])}</span></div>
+    <div class="co">${esc(t.intl[1])}</div>
+    <p class="intl">${esc(t.intl[3])}</p>
     <div class="role"><strong>${esc(t.role)}</strong><span>${esc(t.dates)}</span></div>
     <div class="co">${esc(t.co)}</div>
     <ul>${t.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
     <h2>${t.secH}</h2>
     <ul class="cols">${t.sectors.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
-    <h2>${t.methodH}</h2>
-    <div class="method">${t.method.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
     <h2>${t.lookH}</h2>
     <p>${esc(t.look)}</p>
   </main>
