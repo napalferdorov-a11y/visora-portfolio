@@ -22,8 +22,8 @@ const T = {
       "Direction d'une équipe de monteurs et de créateurs de contenu : montage, déclinaisons de formats et contenu réseaux sociaux.",
       "Production en marque blanche pour agences, sous NDA, dans le respect de leurs délais.",
     ],
-    secH: 'Secteurs',
-    sectors: ['Immobilier', 'Hôtels & riads', 'Industrie', 'Retail & FMCG', 'Cliniques privées', 'Événements & lancements'],
+    secH: 'Domaines',
+    sectors: ['Marques & publicité', 'Immobilier', 'Shootings privés', 'Courts-métrages', 'Contenu réseaux sociaux', 'Événements'],
     skillsH: 'Compétences',
     skills: [
       'Écriture de script et liste de plans',
@@ -70,8 +70,8 @@ const T = {
       "Lead a team of editors and content creators covering editing, format versions and social media content.",
       "White-label production for agencies, under NDA, delivered to their schedule.",
     ],
-    secH: 'Sectors',
-    sectors: ['Real estate', 'Hotels & riads', 'Industry', 'Retail & FMCG', 'Private clinics', 'Events & launches'],
+    secH: 'What I do',
+    sectors: ['Brands & advertising', 'Real estate', 'Private shoots', 'Short films', 'Social media content', 'Events'],
     skillsH: 'Skills',
     skills: [
       'Scriptwriting and shot lists',
@@ -129,8 +129,8 @@ function html(t) {
   .co { color: #4f5844; font-weight: 600; font-size: 9.5pt; margin-bottom: 2.5mm; }
   main ul { padding-left: 4.5mm; }
   main li { margin-bottom: 1.1mm; }
-  .tags { display: flex; flex-wrap: wrap; gap: 1.8mm; }
-  .tags span { border: 1px solid #c9c5bb; border-radius: 99px; padding: .8mm 3mm; font-size: 8.5pt; }
+  main ul.cols { columns: 2; column-gap: 6mm; }
+  main ul.cols li { break-inside: avoid; font-weight: 600; }
   .method { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
   .method div { background: #f3f0ea; border-radius: 2mm; padding: 2mm 3mm; }
   .method b { display: block; font-size: 9pt; }
@@ -162,7 +162,7 @@ function html(t) {
     <div class="co">${esc(t.co)}</div>
     <ul>${t.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
     <h2>${t.secH}</h2>
-    <div class="tags">${t.sectors.map((s) => `<span>${esc(s)}</span>`).join('')}</div>
+    <ul class="cols">${t.sectors.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
     <h2>${t.methodH}</h2>
     <div class="method">${t.method.map(([a, b]) => `<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
     <h2>${t.lookH}</h2>
