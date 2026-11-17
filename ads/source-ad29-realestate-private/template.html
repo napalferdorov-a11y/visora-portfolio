@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/local.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#F3F0EA;--ink:#121212;--blue:#2E46C8;--navy:#0B1626;--line:#CFE0FF;--wa:#25D366}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:'General Sans',sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.scene{position:absolute;inset:0;overflow:hidden}
+.inner{position:absolute;inset:0;transform-origin:50% 50%}
+.h{font-family:'Clash Display',sans-serif;font-weight:600;letter-spacing:-.022em;line-height:1.0}
+.lt .w{display:inline-block;white-space:nowrap}
+.lt .ch{display:inline-block;will-change:transform,opacity,filter}
+.label{font-weight:600;font-size:24px;letter-spacing:.24em;text-transform:uppercase}
+.tnum{font-variant-numeric:tabular-nums}
+img{display:block}
+.full{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.grid{position:absolute;inset:0;background-color:var(--navy);
+  background-image:linear-gradient(rgba(140,180,255,.13) 2px,transparent 2px),linear-gradient(90deg,rgba(140,180,255,.13) 2px,transparent 2px),linear-gradient(rgba(140,180,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(140,180,255,.06) 1px,transparent 1px);
+  background-size:200px 200px,200px 200px,40px 40px,40px 40px;background-position:-60px -40px,-60px -40px,-60px -40px,-60px -40px}
+.shadow{text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.chip{display:inline-block;padding:14px 26px;border-radius:100px;font-weight:600;font-size:25px;letter-spacing:.14em;text-transform:uppercase}
+
+/* S1 blueprint hook */
+#bp{position:absolute;inset:0;width:1080px;height:1920px}
+#bp .ln{fill:none;stroke:var(--line);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1 1;stroke-dashoffset:1}
+#bp .thin{stroke-width:2.5;opacity:.7}
+#bp text{fill:var(--line);font-family:'General Sans';font-weight:600;font-size:26px;letter-spacing:.12em}
+#hook1{position:absolute;left:84px;top:210px;font-size:132px}
+#elev{position:absolute;left:0;right:0;top:1500px;text-align:center;color:rgba(207,224,255,.75)}
+
+/* S2 villa */
+#s2{clip-path:polygon(0 0,0 0,0 0)}
+#vU{transform-origin:50% 50%}
+.bscrim{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,0))}
+.tscrim{position:absolute;left:0;right:0;top:0;height:640px;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0))}
+#home{position:absolute;left:84px;top:200px;font-size:140px}
+#logo1{position:absolute;left:190px;top:1470px;width:700px;height:127px;color:#fff;filter:drop-shadow(0 4px 24px rgba(0,0,0,.5))}
+#sub1{position:absolute;left:0;right:0;top:1650px;text-align:center;color:rgba(255,255,255,.9)}
+
+/* S3 room tour */
+#s3{-webkit-mask-image:linear-gradient(#000,#000);mask-image:linear-gradient(#000,#000)}
+.ann{position:absolute;inset:0;width:1080px;height:1920px;opacity:0}
+.ann .ln{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tag{position:absolute;padding:12px 22px;border-radius:8px;background:rgba(11,22,38,.82);border:2px solid rgba(207,224,255,.6);font-weight:600;font-size:24px;letter-spacing:.2em;color:#fff;opacity:0}
+#tour{position:absolute;left:84px;top:1480px;font-size:124px}
+#s3lab{position:absolute;left:72px;top:110px}
+
+/* S4 before / after */
+#s4 .h{color:#fff}
+#same{position:absolute;left:84px;top:200px;font-size:122px}
+#ba{position:absolute;left:60px;top:690px;width:960px;height:560px;border-radius:26px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);outline:3px solid rgba(207,224,255,.35);outline-offset:10px}
+#ba img{position:absolute;inset:0;width:960px;height:560px}
+#aft{clip-path:inset(0 0 0 100%)}
+#knob{position:absolute;top:0;bottom:0;left:0;width:6px;margin-left:-3px;background:#fff;opacity:0}
+#knob i{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+#knob i:before,#knob i:after{content:"";position:absolute;top:22px;border-top:10px solid transparent;border-bottom:10px solid transparent}
+#knob i:before{left:13px;border-right:12px solid var(--navy)}
+#knob i:after{right:13px;border-left:12px solid var(--navy)}
+#cB{position:absolute;left:24px;top:24px;background:rgba(11,22,38,.82);color:#fff}
+#cA{position:absolute;right:24px;top:24px;background:var(--blue);color:#fff}
+#offer{position:absolute;left:60px;top:1330px;display:flex;gap:14px}
+#offer span{padding:18px 30px;border-radius:100px;border:3px solid rgba(207,224,255,.8);font-weight:600;font-size:29px;color:#fff}
+
+/* S5 grid */
+#types{position:absolute;left:84px;top:170px;font-size:98px}
+.tile{position:absolute;width:470px;height:420px;border-radius:22px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.tile img{width:470px;height:420px}
+
+/* letterbox + private */
+#priv{opacity:0;background:#000}
+#priv img{position:absolute}
+.band760{left:0;top:580px;width:1080px;height:760px;object-fit:cover}
+.band608{left:0;top:656px;width:1080px;height:608px;object-fit:cover}
+#lbT,#lbB{position:absolute;left:0;right:0;height:0;background:#000}
+#lbT{top:0}#lbB{bottom:0}
+#ovl{position:absolute;inset:0;pointer-events:none}
+#photo{position:absolute;left:0;right:0;top:770px;text-align:center;font-size:132px}
+#story{position:absolute;left:84px;top:250px;font-size:128px}
+#plab{position:absolute;left:0;right:0;top:1420px;text-align:center}
+#plab b{display:block;font-weight:500;font-size:30px;letter-spacing:.02em;text-transform:none;color:rgba(255,255,255,.8);margin-top:16px}
+#spiral{position:absolute;inset:0;width:1080px;height:1920px;opacity:0}
+#spiral .ln{fill:none;stroke:rgba(255,255,255,.9);stroke-width:3.5;stroke-dasharray:1 1;stroke-dashoffset:1}
+#spiral .g{stroke:rgba(255,255,255,.4);stroke-width:2}
+#port{position:absolute;left:84px;top:1520px;font-size:150px}
+#film{position:absolute;left:84px;top:1360px;font-size:128px}
+#fc{position:absolute;left:84px;top:540px;font-weight:600;font-size:24px;letter-spacing:.2em;color:rgba(255,255,255,.75);opacity:0}
+#sprk{position:absolute;left:0;top:656px;width:1080px;height:608px;opacity:0;pointer-events:none}
+#sprk i{position:absolute;width:34px;height:22px;border-radius:5px;background:rgba(0,0,0,.85);box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.mw{position:absolute;left:0;right:0;top:860px;text-align:center;font-size:156px;opacity:0}
+
+/* CTA */
+#s8{background:var(--bg);color:var(--ink);opacity:0}
+#logo2{position:absolute;left:230px;top:410px;width:620px;height:112px;color:var(--ink)}
+#cta{position:absolute;left:0;right:0;top:610px;text-align:center;font-size:146px}
+#cta .hl{position:relative;display:inline-block;padding:0 24px 8px}
+#cta .hl .bar{position:absolute;left:0;right:0;top:10px;bottom:0;background:var(--blue);border-radius:16px;transform-origin:0 50%;transform:scaleX(0)}
+#cta .hl .tx{position:relative}
+#svc8{position:absolute;left:0;right:0;top:948px;text-align:center;color:rgba(18,18,18,.62)}
+#btn{position:absolute;left:150px;top:1040px;width:780px;height:138px;border-radius:70px;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;gap:24px;font-weight:600;font-size:45px;letter-spacing:-.01em;box-shadow:0 18px 44px rgba(37,211,102,.32);overflow:hidden}
+#btn svg{width:56px;height:56px;flex:none}
+#sheen{position:absolute;top:-20px;bottom:-20px;left:0;width:140px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:translateX(-200px) skewX(-18deg)}
+#num{position:absolute;left:0;right:0;top:1230px;text-align:center;font-weight:600;font-size:66px;letter-spacing:.01em}
+#site{position:absolute;left:0;right:0;top:1338px;text-align:center;font-weight:500;font-size:34px;color:rgba(18,18,18,.6)}
+#bub{position:absolute;right:120px;top:1470px;padding:26px 34px 22px;border-radius:30px 30px 6px 30px;background:#DCF8C6;color:#111;font-weight:500;font-size:36px;box-shadow:0 14px 34px rgba(18,18,18,.14);transform-origin:100% 100%}
+#bub small{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-top:6px;font-size:22px;color:rgba(18,18,18,.5)}
+#bub svg{width:30px;height:18px}
+
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- S1 · blueprint -->
+  <div class="scene" id="s1"><div class="inner">
+    <div class="grid"></div>
+    <svg id="bp" viewBox="0 0 1080 1920">
+      <path class="ln" pathLength="1" style="--d:.05" d="M90,1300 H990"/>
+      <path class="ln" pathLength="1" style="--d:.15" d="M180,1300 V840 H150 V820 H420 V640 H380 V620 H940 V640 H900 V1300"/>
+      <path class="ln thin" pathLength="1" style="--d:.45" d="M420,820 V1300"/>
+      <path class="ln thin" pathLength="1" style="--d:.55" d="M240,960 h180 v200 h-180 z M330,960 v200"/>
+      <path class="ln thin" pathLength="1" style="--d:.65" d="M520,1080 h110 v220 h-110 z M610,1190 h-10"/>
+      <path class="ln thin" pathLength="1" style="--d:.75" d="M690,960 h160 v240 h-160 z M770,960 v240 M690,1080 h160"/>
+      <path class="ln thin" pathLength="1" style="--d:.85" d="M460,690 h190 v110 h-190 z M555,690 v110"/>
+      <path class="ln thin" pathLength="1" style="--d:.95" d="M700,690 h160 v110 h-160 z M780,690 v110"/>
+      <path class="ln thin" pathLength="1" style="--d:1.05" d="M180,1312 V1396 M900,1312 V1396 M180,1380 H900 M168,1392 l24,-24 M888,1392 l24,-24"/>
+      <path class="ln thin" pathLength="1" style="--d:1.15" d="M952,620 H1012 M952,1300 H1012 M1000,620 V1300 M988,632 l24,-24 M988,1312 l24,-24"/>
+      <text x="540" y="1440" text-anchor="middle" id="dim1" opacity="0">12.40</text>
+      <text x="1030" y="980" text-anchor="middle" id="dim2" opacity="0" transform="rotate(-90 1030 980)">7.20</text>
+    </svg>
+    <div id="hook1" class="h lt">Some see<br>a house.</div>
+    <div id="elev" class="label">Elevation A — scale 1:100</div>
+  </div></div>
+
+  <!-- S2 · villa comes alive -->
+  <div class="scene" id="s2"><div class="inner">
+    <img id="vU" class="full" src="frames/U/0276.jpg">
+    <div class="tscrim"></div><div class="bscrim"></div>
+    <div id="home" class="h lt shadow">We see<br>a home.</div>
+    <div id="logo1">{{LOGO1}}</div>
+    <div id="sub1" class="label lt">Real estate · Film &amp; photo</div>
+  </div></div>
+
+  <!-- S3 · room tour -->
+  <div class="scene" id="s3"><div class="inner">
+    <img id="tU" class="full" src="frames/U/0010.jpg">
+    <div class="tscrim"></div><div class="bscrim"></div>
+    <svg class="ann" id="a0" viewBox="0 0 1080 1920"><path class="ln" pathLength="1" d="M120,740 V700 M120,720 H960 M960,700 V740"/></svg>
+    <svg class="ann" id="a1" viewBox="0 0 1080 1920"><path class="ln" pathLength="1" d="M160,1040 V1000 M160,1020 H900 M900,1000 V1040"/></svg>
+    <svg class="ann" id="a2" viewBox="0 0 1080 1920"><path class="ln" pathLength="1" d="M200,600 V560 M200,580 H980 M980,560 V600"/></svg>
+    <svg class="ann" id="a3" viewBox="0 0 1080 1920"><path class="ln" pathLength="1" d="M100,940 V900 M100,920 H880 M880,900 V940"/></svg>
+    <div class="tag" id="g0" style="left:120px;top:630px">BEDROOM</div>
+    <div class="tag" id="g1" style="left:160px;top:930px">KITCHEN</div>
+    <div class="tag" id="g2" style="left:200px;top:490px">STAIRCASE</div>
+    <div class="tag" id="g3" style="left:100px;top:830px">LIVING ROOM</div>
+    <div id="s3lab" class="chip" style="background:rgba(11,22,38,.82);border:2px solid rgba(207,224,255,.5)">Real estate</div>
+    <div id="tour" class="h lt shadow">Every room.<br>Every detail.</div>
+  </div></div>
+
+  <!-- S4 · before / after -->
+  <div class="scene" id="s4"><div class="inner">
+    <div class="grid"></div>
+    <div id="same" class="h lt">Same room.<br>Better listing.</div>
+    <div id="ba">
+      <img id="bef" src="img/before.jpg"><img id="aft" src="img/after.jpg">
+      <div id="knob"><i></i></div>
+      <div id="cB" class="chip">Before</div><div id="cA" class="chip">After</div>
+    </div>
+    <div id="offer"><span>Photos</span><span>Video tours</span><span>Reels</span></div>
+  </div></div>
+
+  <!-- S5 · property types -->
+  <div class="scene" id="s5"><div class="inner">
+    <div class="grid"></div>
+    <div id="types" class="h lt">Villas. Riads.<br>Hotels. Apartments.</div>
+    <div class="tile" id="t1" style="left:60px;top:470px"><img src="img/t_ext.jpg"></div>
+    <div class="tile" id="t2" style="left:550px;top:470px"><img src="img/t_room.jpg"></div>
+    <div class="tile" id="t3" style="left:60px;top:910px"><img src="img/t_kitchen.jpg"></div>
+    <div class="tile" id="t4" style="left:550px;top:910px"><img src="img/t_bed.jpg"></div>
+    <div class="tile" id="t5" style="left:60px;top:1350px"><img src="img/t_bedroom.jpg"></div>
+    <div class="tile" id="t6" style="left:550px;top:1350px"><img src="img/t_towels.jpg"></div>
+  </div></div>
+
+  <!-- private shooting -->
+  <div class="scene" id="priv">
+    <img id="pan1" class="band760" src="img/pan1.jpg">
+    <img id="pan2" class="band760" src="img/pan2.jpg">
+    <img id="pp3" class="full" src="img/pf3.jpg">
+    <img id="pp2" class="full" src="img/pf2.jpg">
+    <img id="fS" class="band608" src="frames/S/0001.jpg">
+    <img id="fT" class="band608" src="frames/T/0001.jpg">
+    <img id="mU" class="full" src="frames/U/0290.jpg">
+    <img id="mA" class="full" src="frames/A/0001.jpg">
+    <div class="bscrim" id="pscrim" style="opacity:0"></div>
+    <svg id="spiral" viewBox="0 0 1080 1920">
+      <path class="ln g" pathLength="1" d="M360,0 V1920 M720,0 V1920 M0,640 H1080 M0,1280 H1080"/>
+      <path class="ln" pathLength="1" d="{{SPIRAL}}"/>
+    </svg>
+    <div id="sprk">{{SPROCKETS}}</div>
+  </div>
+
+  <!-- CTA (sits under the letterbox) -->
+  <div class="scene" id="s8"><div class="inner">
+    <div id="logo2">{{LOGO2}}</div>
+    <div id="cta" class="h"><span class="lt" id="cta1">Your home.</span><br><span class="hl"><span class="bar"></span><span class="tx lt" id="cta2">Your story.</span></span></div>
+    <div id="svc8" class="label">Real estate · Private shooting</div>
+    <div id="btn"><div id="sheen"></div>
+      <svg viewBox="0 0 56 56" fill="none"><path d="M28 6C15.85 6 6 15.4 6 27c0 4.2 1.3 8.1 3.5 11.4L7 50l12.2-2.9C21.9 48.3 24.9 49 28 49c12.15 0 22-9.4 22-22S40.15 6 28 6Z" stroke="#fff" stroke-width="4.5" stroke-linejoin="round"/><circle cx="19.5" cy="27.5" r="2.8" fill="#fff"/><circle cx="28" cy="27.5" r="2.8" fill="#fff"/><circle cx="36.5" cy="27.5" r="2.8" fill="#fff"/></svg>
+      <span>Message us on WhatsApp</span>
+    </div>
+    <div id="num" class="tnum lt">+66 65 870 5616</div>
+    <div id="site">visoraprod.com · @visoraprod</div>
+    <div id="bub">Hi! I'd like a quote for a shoot.<small>now<svg viewBox="0 0 30 18" fill="none" stroke="#34B7F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l5 5L17 3M12 15L22 3"/></svg></small></div>
+  </div></div>
+
+  <div id="lbT"></div><div id="lbB"></div>
+
+  <div id="ovl">
+    <div id="photo" class="h lt">Some see<br>a photo.</div>
+    <div id="story" class="h lt">We see<br>a story.</div>
+    <div id="plab" class="label">Private shooting<b>Portraits · Personal films</b></div>
+    <div id="port" class="h lt shadow">Portraits.</div>
+    <div id="fc" class="tnum">FRAME 0001 · 24 FPS</div>
+    <div id="film" class="h lt">Personal<br>films.</div>
+    <div class="mw h lt shadow" id="m1">Your home.</div>
+    <div class="mw h lt shadow" id="m2">Your story.</div>
+    <div class="mw h lt shadow" id="m3">On film.</div>
+  </div>
+
+  <div id="flash"></div>
+</div>
+
+<script>
+const EXPO='cubic-bezier(.16,1,.3,1)', INOUT='cubic-bezier(.65,0,.35,1)', EIN='cubic-bezier(.6,0,.85,.2)', LIN='linear', KB='cubic-bezier(.2,.6,.3,1)', SPR='cubic-bezier(.2,1.15,.3,1)';
+const anims=[];
+function A(sel,t0,dur,kf,ease=EXPO,fill='both',stagger=0){
+  const els=typeof sel==='string'?[...document.querySelectorAll(sel)]:[sel];
+  els.forEach((el,i)=>{const a=el.animate(kf,{duration:dur*1000,delay:(t0+i*stagger)*1000,fill,easing:ease});a.pause();anims.push(a)});
+}
+const fade=[{opacity:0},{opacity:1}], unfade=[{opacity:1},{opacity:0}];
+const popIn=[{transform:'translateY(36px)',opacity:0},{transform:'translateY(0)',opacity:1}];
+const kb=(a,b)=>[{transform:'scale('+a+')'},{transform:'scale('+b+')'}];
+const draw=[{strokeDashoffset:1},{strokeDashoffset:0}];
+
+// split .lt text into per-letter spans (words kept together so lines never break mid-word)
+document.querySelectorAll('.lt').forEach(el=>{
+  const walk=n=>{[...n.childNodes].forEach(c=>{
+    if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{
+      if(!w)return; if(/^\s+$/.test(w)){f.appendChild(document.createTextNode(' '));return}
+      const ws=document.createElement('span');ws.className='w';[...w].forEach(ch=>{const s=document.createElement('span');s.className='ch';s.textContent=ch;ws.appendChild(s)});f.appendChild(ws)});
+      c.replaceWith(f)}
+    else if(c.nodeType===1&&c.tagName!=='BR') walk(c)})};
+  walk(el)});
+const ltIn=[{opacity:0,filter:'blur(14px)',transform:'translateY(26px)'},{opacity:1,filter:'blur(0px)',transform:'translateY(0)'}];
+const ltOut=[{opacity:1,filter:'blur(0px)',transform:'translateY(0)'},{opacity:0,filter:'blur(12px)',transform:'translateY(-18px)'}];
+// letters of line `ln` (split by <br>) in element `sel`
+function chars(sel,line){const el=document.querySelector(sel);const out=[];let l=0;[...el.querySelectorAll('.ch, br')].forEach(n=>{if(n.tagName==='BR')l++;else if(line===undefined||line===l)out.push(n)});return out}
+function LT(sel,t0,line,dur=0.5,st=0.026){chars(sel,line).forEach((c,i)=>A(c,t0+i*st,dur,ltIn,'cubic-bezier(.2,.7,.2,1)'))}
+function LO(sel,t0,dur=0.32,st=0.012){chars(sel).forEach((c,i)=>A(c,t0+i*st,dur,ltOut,EIN,'forwards'))}
+
+// beat grid of "Too Many Nights" from 0:09.05: 808 drop at 2.00, ~87.8 BPM
+const BEAT=0.6835, BAR=4*BEAT, D1=2.00, Bn=n=>D1+n*BAR, D2=Bn(4), END=29.4;
+const b=(n,k)=>Bn(n)+k*BEAT;
+
+/* ---------- S1 blueprint hook ---------- */
+A('#s1 .inner',0,2.4,kb(1.0,1.05),LIN);
+document.querySelectorAll('#bp .ln').forEach(p=>A(p,parseFloat(p.style.getPropertyValue('--d')),0.7,draw,INOUT));
+A('#dim1',1.25,0.3,fade,LIN); A('#dim2',1.35,0.3,fade,LIN);
+LT('#hook1',0.12,0); LT('#hook1',0.42,1);
+A('#elev',0.9,0.5,popIn);
+LO('#hook1',D1-0.34); A('#elev',D1-0.3,0.25,unfade,LIN,'forwards');
+A('#bp',D1-0.05,0.45,unfade,LIN,'forwards');
+
+/* ---------- S2 villa ---------- */
+A('#vU',D1-0.35,BAR+0.6,kb(1.0,1.07),LIN);
+LT('#home',D1+0.32,0); LT('#home',b(0,1)-0.04,1);
+A('#logo1',b(0,2)-0.1,0.01,fade,LIN);
+LT('#sub1',b(0,3)-0.02,undefined,0.45,0.012);
+A('#s2 .inner',Bn(1)-0.02,0.5,[{filter:'brightness(1)'},{filter:'brightness(.55)'}],LIN,'forwards');
+
+/* ---------- S3 room tour (blinds transition in) ---------- */
+for(let k=0;k<4;k++){
+  const t=b(1,k);
+  A('#a'+k,t,0.01,fade,LIN); if(k<3) A('#a'+k,b(1,k+1),0.01,unfade,LIN,'forwards');
+  A('#a'+k+' .ln',t+0.04,0.42,draw,INOUT);
+  A('#g'+k,t+0.16,0.4,popIn); if(k<3) A('#g'+k,b(1,k+1),0.01,unfade,LIN,'forwards');
+}
+A('#tU',Bn(1),BAR+0.5,kb(1.08,1.0),KB);
+A('#s3lab',Bn(1)+0.2,0.45,popIn);
+LT('#tour',Bn(1)+0.28,0); LT('#tour',b(1,1)+0.1,1);
+
+/* ---------- S4 before / after (slides in sideways) ---------- */
+A('#s4',Bn(2)-0.22,0.6,[{transform:'translateX(100%)'},{transform:'translateX(0)'}]);
+A('#s3 .inner',Bn(2)-0.22,0.6,[{transform:'translateX(0)',filter:'brightness(1)'},{transform:'translateX(-30%)',filter:'brightness(.4)'}],EXPO,'forwards');
+LT('#same',Bn(2)+0.1,0); LT('#same',b(2,1)-0.06,1);
+A('#ba',Bn(2)+0.18,0.7,[{transform:'translateY(120px) scale(.92)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}]);
+A('#cB',b(2,1),0.4,popIn);
+const W0=b(2,2), W1=W0+0.85;
+A('#aft',W0,W1-W0,[{clipPath:'inset(0 0 0 100%)'},{clipPath:'inset(0 0 0 0%)'}],INOUT);
+A('#knob',W0-0.12,0.12,fade,LIN); A('#knob',W0,W1-W0,[{left:'960px'},{left:'0px'}],INOUT);
+A('#knob',W1,0.15,unfade,LIN,'forwards');
+A('#cB',W0+0.42,0.2,unfade,LIN,'forwards');
+A('#cA',W0+0.18,0.45,popIn);
+A('#offer span',b(2,3),0.42,popIn,EXPO,'both',0.09);
+
+/* ---------- S5 property grid ---------- */
+A('#s5',Bn(3)-0.02,0.35,fade,LIN);
+LT('#types',Bn(3)+0.02,0,0.45,0.02); LT('#types',Bn(3)+0.3,1,0.45,0.02);
+[[1,-6],[2,5],[3,4],[4,-5],[5,-4],[6,6]].forEach(([k,r],i)=>A('#t'+k,Bn(3)+0.06+i*BEAT/4,0.55,[{transform:'scale(.55) rotate('+r+'deg)',opacity:0},{opacity:1,offset:.3},{transform:'scale(1) rotate(0deg)',opacity:1}],SPR));
+
+/* ---------- bridge: letterbox closes, "Some see a photo." ---------- */
+const CL0=b(3,2)-0.35, CL1=CL0+0.42;
+LT('#photo',CL1-0.06,0,0.45,0.024); LT('#photo',CL1+0.2,1,0.45,0.024);
+LO('#photo',D2-0.24,0.22,0.008);
+
+/* ---------- private shooting ---------- */
+A('#priv',CL1,0.01,fade,LIN);
+A('#pan1',D2,BAR+0.2,kb(1.0,1.08),LIN);
+A('#pan2',b(4,2),BEAT*2+0.3,kb(1.08,1.0),KB);
+LT('#story',D2+0.22,0); LT('#story',b(4,1)-0.04,1);
+A('#plab',b(4,2)+0.1,0.5,popIn);
+LO('#story',Bn(5)-0.25,0.24,0.008); A('#plab',Bn(5)-0.25,0.24,unfade,LIN,'forwards');
+// portraits with golden spiral
+A('#pp3',Bn(5),BEAT*2+0.2,kb(1.08,1.0),KB);
+A('#pp2',b(5,2),BEAT*2+0.4,kb(1.0,1.06),LIN);
+A('#pscrim',Bn(5),0.3,fade,LIN); A('#pscrim',Bn(6)-0.1,0.2,unfade,LIN,'forwards');
+A('#spiral',Bn(5)+0.05,0.2,fade,LIN); A('#spiral',b(5,2),0.01,unfade,LIN,'forwards');
+A('#spiral .g',Bn(5)+0.1,0.6,draw,INOUT); A('#spiral .ln:not(.g)',Bn(5)+0.2,1.1,draw,INOUT);
+LT('#port',Bn(5)+0.25,undefined,0.5,0.03);
+LO('#port',Bn(6)-0.25,0.24,0.01);
+// film
+A('#fS',Bn(6)-0.1,BEAT*2+0.3,kb(1.06,1.0),KB);
+A('#fT',b(6,2),BEAT*2+0.3,kb(1.0,1.06),LIN);
+A('#sprk',Bn(6)+0.15,0.3,fade,LIN); A('#sprk',Bn(7)-0.02,0.01,unfade,LIN,'forwards');
+A('#fc',Bn(6)+0.2,0.3,fade,LIN); A('#fc',Bn(7)-0.02,0.01,unfade,LIN,'forwards');
+LT('#film',Bn(6)+0.2,0); LT('#film',b(6,1)-0.04,1);
+LO('#film',Bn(7)-0.22,0.22,0.01);
+// montage
+[['#m1',0],['#m2',1],['#m3',2]].forEach(([id,k])=>{A(id,b(7,k),0.01,fade,LIN);LT(id,b(7,k)+0.02,undefined,0.42,0.022);if(k<2)A(id,b(7,k+1)-0.02,0.01,unfade,LIN,'forwards');});
+A('#mU',b(7,0)-0.02,BEAT+0.1,kb(1.1,1.0),KB);
+A('#mA',b(7,2),BEAT*2.5,kb(1.06,1.0),KB);
+LO('#m3',Bn(8)-0.36,0.24,0.01);
+
+/* ---------- CTA ---------- */
+A('#s8',Bn(8)-0.05,0.01,fade,LIN);
+A('#s8 .inner',Bn(8),1.2,kb(1.06,1.0),EXPO);
+LT('#cta1',Bn(8)+0.32,undefined,0.5,0.03); LT('#cta2',b(8,1)-0.02,undefined,0.5,0.03);
+A('#cta .bar',b(8,2)-0.02,0.5,[{transform:'scaleX(0)'},{transform:'scaleX(1)'}]);
+A('#cta .tx',b(8,2)+0.02,0.22,[{color:'#121212'},{color:'#ffffff'}],LIN);
+A('#svc8',b(8,2)+0.2,0.5,popIn);
+A('#btn',b(8,3)-0.02,0.7,[{transform:'translateY(70px) scale(.9)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],SPR);
+A('#sheen',b(8,3)+0.4,0.7,[{transform:'translateX(-200px) skewX(-18deg)'},{transform:'translateX(980px) skewX(-18deg)'}],INOUT);
+LT('#num',b(8,3)+0.24,undefined,0.42,0.03);
+const PRESS=Bn(9)+0.02;
+A('#btn',PRESS,0.4,[{transform:'scale(1)'},{transform:'scale(.95)',offset:.3},{transform:'scale(1)'}],LIN,'forwards');
+A('#bub',PRESS+0.1,0.55,[{transform:'translateY(60px) scale(.6)',opacity:0},{transform:'translateY(0) scale(1)',opacity:1}],SPR);
+A('#site',b(9,1),0.5,popIn);
+A('#flash',D1,0.3,[{opacity:.55},{opacity:0}],KB,'forwards');
+A('#flash',D2,0.36,[{opacity:.7},{opacity:0}],KB,'forwards');
+
+/* ---------- logo animations (CSS inside the SVG) ---------- */
+let logo1=[],logo2=[];
+function collect(){
+  document.getAnimations().forEach(a=>{
+    if(anims.includes(a))return;
+    const el=a.effect&&a.effect.target; if(!el)return;
+    if(el.closest('#logo1')){a.pause();logo1.push(a)} else if(el.closest('#logo2')){a.pause();logo2.push(a)}
+  });
+}
+
+const $=id=>document.getElementById(id);
+const vU=$('vU'),tU=$('tU'),fS=$('fS'),fT=$('fT'),mU=$('mU'),mA=$('mA'),s2=$('s2'),s3=$('s3'),s8=$('s8'),lbT=$('lbT'),lbB=$('lbB'),fc=$('fc');
+const P={pan1:$('pan1'),pan2:$('pan2'),pp3:$('pp3'),pp2:$('pp2'),fS,fT,mU,mA};
+const clamp=(v,a,b_)=>Math.max(a,Math.min(b_,v));
+const eo=x=>1-Math.pow(1-clamp(x,0,1),3), ei=x=>Math.pow(clamp(x,0,1),3), eio=x=>{x=clamp(x,0,1);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const pad=(n,l=4)=>String(n).padStart(l,'0');
+async function setFrame(img,dir,idx){const src='frames/'+dir+'/'+pad(idx)+'.jpg';if(img.dataset.s!==src){img.dataset.s=src;img.src=src;try{await img.decode()}catch(e){}}}
+const fr=(t,t0)=>Math.round((t-t0)*30);
+const HOUSE=[[150,820],[420,820],[420,640],[380,640],[380,620],[940,620],[940,640],[900,640],[900,1300],[180,1300],[180,840],[150,840]];
+// letterbox: visible band height over time
+const KEYS=[[0,1920],[CL0,1920],[CL1,0],[D2,0],[D2+0.6,760],[Bn(5)-0.02,760],[Bn(5)+0.42,1920],[Bn(6)-0.08,1920],[Bn(6)+0.34,608],[Bn(7)-0.04,608],[Bn(7)+0.2,1920],[b(7,1)-0.04,1920],[b(7,1)+0.18,760],[b(7,2)-0.04,760],[b(7,2)+0.2,1920],[Bn(8)-0.36,1920],[Bn(8)-0.04,0],[Bn(8)+0.02,0],[Bn(8)+0.62,1920],[99,1920]];
+function bandH(t){for(let i=0;i<KEYS.length-1;i++){const[a,h0]=KEYS[i],[c,h1]=KEYS[i+1];if(t<c){const x=(t-a)/(c-a);return h0+(h1-h0)*(h1<h0?eio(x):eo(x))}}return 1920}
+// which private layer shows when
+const SHOW=[['pan1',D2-0.1,b(4,2)],['pan2',b(4,2),Bn(5)],['pp3',Bn(5),b(5,2)],['pp2',b(5,2),Bn(6)],['fS',Bn(6),b(6,2)],['fT',b(6,2),Bn(7)],['mU',Bn(7),b(7,1)],['pan2',b(7,1),b(7,2)],['mA',b(7,2),Bn(8)+0.05]];
+
+window.seek=async function(t){
+  const ms=t*1000;
+  anims.forEach(a=>a.currentTime=ms);
+  logo1.forEach(a=>a.currentTime=Math.max(0,(t-(b(0,2)-0.1))*1.2)*1000);
+  logo2.forEach(a=>a.currentTime=Math.max(0,(t-(Bn(8)+0.12))*1.42)*1000);
+  const jobs=[];
+  if(t>=D1-0.5&&t<Bn(1)+0.6) jobs.push(setFrame(vU,'U',clamp(276+Math.floor(Math.max(0,fr(t,D1-0.35))*0.7),276,348)));
+  if(t>=Bn(1)-0.1&&t<Bn(2)+0.6){const k=clamp(Math.floor((t-Bn(1))/BEAT),0,3),st=[10,40,98,160][k];jobs.push(setFrame(tU,'U',clamp(st+fr(t,b(1,k)),st,st+40)))}
+  if(t>=Bn(6)-0.2&&t<b(6,2)+0.1) jobs.push(setFrame(fS,'S',clamp(1+fr(t,Bn(6)-0.1),1,184)));
+  if(t>=b(6,2)-0.1&&t<Bn(7)+0.1) jobs.push(setFrame(fT,'T',clamp(20+fr(t,b(6,2)),20,116)));
+  if(t>=Bn(7)-0.1&&t<b(7,1)+0.1) jobs.push(setFrame(mU,'U',clamp(290+fr(t,Bn(7)),290,348)));
+  if(t>=b(7,2)-0.1&&t<Bn(8)+0.2) jobs.push(setFrame(mA,'A',clamp(30+fr(t,b(7,2)),30,119)));
+  await Promise.all(jobs);
+  // blueprint house becomes a window onto the villa, then bursts to full frame
+  if(t<D1-0.35){s2.style.clipPath='polygon(0 0,0 0,0 0)'}
+  else{const k=t<D1?1:1+5.2*eo((t-D1)/0.85);
+    if(k>=6.19){s2.style.clipPath='none'}else{s2.style.clipPath='polygon('+HOUSE.map(([x,y])=>(540+(x-540)*k).toFixed(1)+'px '+(960+(y-960)*k).toFixed(1)+'px').join(',')+')'}
+    vU.style.opacity=t<D1?clamp((t-(D1-0.35))/0.3,0,1):1}
+  // venetian-blind reveal of the room tour
+  const x=clamp((t-(Bn(1)-0.1))/0.42,0,1);
+  if(t<Bn(1)-0.1){s3.style.visibility='hidden'}else{s3.style.visibility='visible';const w=(192*eio(x)).toFixed(1);const m=x>=1?'linear-gradient(#000,#000)':'repeating-linear-gradient(180deg,#000 0px,#000 '+w+'px,transparent '+w+'px,transparent 192px)';s3.style.webkitMaskImage=m;s3.style.maskImage=m}
+  // letterbox
+  const H=bandH(t),bar=((1920-H)/2).toFixed(1); lbT.style.height=bar+'px'; lbB.style.height=bar+'px';
+  // private layers
+  for(const k in P) P[k].style.visibility='hidden';
+  SHOW.forEach(([k,a,c])=>{if(t>=a&&t<c)P[k].style.visibility='visible'});
+  fc.textContent='FRAME '+pad(Math.max(1,fr(t,Bn(6))+1))+' · 24 FPS';
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+};
+window.ready=(async()=>{await document.fonts.ready;await Promise.all(['600 100px "Clash Display"','700 100px "Clash Display"','500 30px "General Sans"','600 30px "General Sans"'].map(f=>document.fonts.load(f)));await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));collect();await seek(0);return {a:anims.length,l1:logo1.length,l2:logo2.length}})();
+</script>
+</body>
+</html>
