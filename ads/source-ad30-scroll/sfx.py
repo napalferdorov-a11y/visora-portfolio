@@ -100,8 +100,8 @@ for k in np.arange(0.5, 5.0, 0.5):
     tk = DROP * (1 - (1 - k * 1040 / 5200) ** (1 / 3))
     put('scroll tick', tk, tick(1500 + 120 * k), -15 if k % 1 == 0 else -21, 0.15 * (-1) ** int(k * 2))
 put('riser', 0, riser(0.9), -12, peak_at=DROP - 0.015)
-put('hook out', DROP - 0.32, swish(0.3, 2200), -18)
-put('finger in', DROP - 0.42, swish(0.3, 2400), -21, 0.2)
+put('hook out', DROP - 0.46, swish(0.3, 2200), -18)
+put('finger in', DROP - 0.32, swish(0.3, 2400), -21, 0.2)
 put('stop tap', DROP - 0.14, click(), -5)
 # --- the stop
 put('shutter', DROP - 0.005, shutter(), -6)
