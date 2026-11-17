@@ -24,11 +24,13 @@ const FPS = 30, DUR = 30, N = FPS * DUR;
       await p.screenshot({ path: path.join(out, 't' + t.toFixed(2).padStart(5, '0') + '.jpg'), type: 'jpeg', quality: 88 });
     }
   } else {
-    const W = Number(process.argv[3] || 4);
+    const range = mode === 'range';
+    const a = range ? Number(process.argv[3]) : 0, b = range ? Number(process.argv[4]) : N;
+    const W = Number(process.argv[range ? 5 : 3] || 4);
     const out = path.join(DIR, 'out2'); fs.mkdirSync(out, { recursive: true });
     await Promise.all([...Array(W)].map(async (_, w) => {
       const { p } = await open();
-      for (let i = w; i < N; i += W) {
+      for (let i = a + w; i < b; i += W) {
         await p.evaluate(t => window.seek(t), i / FPS);
         await p.screenshot({ path: path.join(out, 'f' + String(i).padStart(4, '0') + '.jpg'), type: 'jpeg', quality: 97 });
         if (i % 60 === w) console.log('frame', i);

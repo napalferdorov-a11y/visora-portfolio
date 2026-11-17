@@ -194,7 +194,7 @@ img{display:block}
     <div class="title h"><span class="ln"><span class="in">Content</span></span><span class="ln"><span class="in">every month.</span></span></div>
     <div id="phone"><div id="scr"><div id="feed">
       <div class="reel" id="r1">
-        <img id="fO" src="frames/O/0001.jpg">
+        <img id="fO" src="frames/P/0064.jpg">
         <div class="rscrim"></div>
         <div class="rtop"><span style="display:flex;align-items:center"><i></i>Reels</span><span>0:12</span></div>
         <div class="rcap"><div class="who"><b>V</b>@visoraprod</div><p>Monthly content for your brand. Reels, TikTok and LinkedIn, planned with your team.</p></div>
@@ -240,7 +240,7 @@ img{display:block}
   <!-- S7 · tagline -->
   <div class="scene" id="s7"><div class="inner">
     <div class="top label"><b></b><span>Visora · Film &amp; photo</span></div>
-    <div id="strip"><img id="fF" src="frames/F/0020.jpg">{{HUD:small}}</div>
+    <div id="strip"><img id="fF" src="frames/G/0030.jpg">{{HUD:small}}</div>
     <div id="tag" class="h">
       <span class="ln"><span class="in">One team.</span></span>
       <span class="ln"><span class="in">From the script</span></span>
@@ -420,8 +420,8 @@ window.seek=async function(t){
   if(t>=S3-0.4&&t<S4+0.6) jobs.push(setFrame(fK,'K',clamp(110+fr(t,S3-LEAD),110,303)));
   if(t>=S4-0.4&&t<C1+0.1) jobs.push(setFrame(uA,'U',clamp(272+fr(t,S4-LEAD),272,348)));
   if(t>=C1-0.1&&t<C2+0.1) jobs.push(setFrame(uB,'U',clamp(98+fr(t,C1),98,150)));
-  if(t>=S5-0.4&&t<S6+0.6) jobs.push(setFrame(fO,'O',clamp(1+fr(t,S5-LEAD),1,644)));
-  if(t>=S7-0.4&&t<S8+0.2) jobs.push(setFrame(fF,'F',clamp(20+fr(t,S7-LEAD),20,259)));
+  if(t>=S5-0.4&&t<S6+0.6) jobs.push(setFrame(fO,'P',clamp(64+fr(t,S5-LEAD),64,259)));
+  if(t>=S7-0.4&&t<S8+0.2) jobs.push(setFrame(fF,'G',clamp(30+fr(t,S7-LEAD),30,303)));
   await Promise.all(jobs);
   // timecode + rec
   const f=Math.floor(t*24),tc='00:00:'+pad(Math.floor(f/24),2)+':'+pad(f%24,2);
